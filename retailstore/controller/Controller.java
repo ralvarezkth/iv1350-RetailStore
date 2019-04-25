@@ -1,6 +1,7 @@
 package retailstore.controller;
 
 import retailstore.model.Sale;
+import retailstore.integration.ItemRegistry;
 import retailstore.integration.RegistryCreator;
 
 public class Controller {
@@ -22,6 +23,23 @@ public class Controller {
 	public void startNewSale() {
 		
 		Sale sale = new Sale();
+	}
+	
+	/**
+	 * 
+	 * @param itemIdentifier
+	 * @param quantity
+	 * @return
+	 */
+	public SaleDTO enterIdentifier(String itemIdentifier, int quantity) {
+		
+		ItemDTO foundItem = findItem(itemIdentifier);
+		
+		enterNewIdentifier();
+		
+		SaleDTO saleDTO = addItem(foundItem, quantity);
+		
+		return saleDTO;
 	}
 	
 }
