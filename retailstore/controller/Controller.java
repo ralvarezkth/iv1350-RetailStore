@@ -1,7 +1,7 @@
 package retailstore.controller;
 
 import retailstore.model.Sale;
-import retailstore.integration.ItemRegistry;
+import retailstore.integration.RegistryCreator;
 
 public class Controller {
 	
@@ -9,16 +9,15 @@ public class Controller {
 	/**
 	 * Creates a new instance.
 	 * 
-	 * @param itemRegistry	
+	 * @param creator Used to get all classes that handle database calls	
 	 */
-
-	public Controller (ItemRegistry itemRegistry) {
+	public Controller (RegistryCreator creator) {
 		
-		
+		// code
 	}
 	
 	/**
-	 * 
+	 * Creates a new instance
 	 */
 	public void startNewSale() {
 		

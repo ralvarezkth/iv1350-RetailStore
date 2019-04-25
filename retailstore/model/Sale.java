@@ -1,5 +1,7 @@
 package retailstore.model;
 
+import retailstore.integration.Amount;
+
 public class Sale {
 	private String dateOfSale;
 	private String timeOfSale;
@@ -9,11 +11,11 @@ public class Sale {
 			Amount runningTotal;
 	private Amount change;
 	private Amount paidAmount;
+	//private <listOfItems> listOfItems; // fix this
 	
 	/**
 	 * Creates a new instance
 	 */
-	
 	public Sale () {
 		
 	}
