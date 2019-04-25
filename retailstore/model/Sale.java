@@ -1,6 +1,8 @@
 package retailstore.model;
 
 import retailstore.integration.Amount;
+import retailstore.integration.ItemDTO;
+import retailstore.model.CashRegister;
 
 public class Sale {
 	private String dateOfSale;
@@ -18,6 +20,18 @@ public class Sale {
 	 */
 	public Sale () {
 		
+	}
+	/**
+	 * 
+	 * @param foundItem
+	 * @param quantity
+	 * @return
+	 */
+	public SaleDTO addItem (ItemDTO foundItem, int quantity) {
+		calculateRunningTotal (foundItem, quantity);
+		SaleDTO saleDTO = new SaleDTO(foundItem, runningTotal);
+		
+		return saleDTO;
 	}
 
 }
