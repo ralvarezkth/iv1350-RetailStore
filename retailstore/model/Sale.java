@@ -21,6 +21,7 @@ public class Sale {
 	public Sale () {
 		
 	}
+	
 	/**
 	 * 
 	 * @param foundItem
@@ -32,6 +33,25 @@ public class Sale {
 		SaleDTO saleDTO = new SaleDTO(foundItem, runningTotal);
 		
 		return saleDTO;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Amount getTotalPrice() {
+		Amount totalPrice = this.totalPrice;
+		
+		return totalPrice;
+	}
+	
+	/**
+	 * 
+	 * @param discountRules
+	 * @return
+	 */
+	public Amount calculatePriceAfterDiscount(DiscountRules discountRules) {
+		return priceAfterDiscount;
 	}
 
 }

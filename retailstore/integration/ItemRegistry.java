@@ -2,10 +2,12 @@ package retailstore.integration;
 
 public class ItemRegistry {
 	
+	
+	
 	/**
 	 * Creates an instance
 	 */
-	public ItemRegistry() {	
+	ItemRegistry() {	
 		
 	}
 	
