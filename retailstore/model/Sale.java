@@ -15,16 +15,16 @@ public class Sale {
 	private Amount change;
 	private Amount paidAmount;
 	//private <listOfItems> listOfItems; // fix this
-	
+
 	/**
 	 * Creates a new instance
 	 */
 	public Sale () {
-		
+
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param foundItem
 	 * @param quantity
 	 * @return
@@ -32,33 +32,33 @@ public class Sale {
 	public SaleDTO addItem (ItemDTO foundItem, int quantity) {
 		calculateRunningTotal (foundItem, quantity);
 		SaleDTO saleDTO = new SaleDTO(foundItem, runningTotal);
-		
+
 		return saleDTO;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public Amount getTotalPrice() {
 		Amount totalPrice = this.totalPrice;
-		
+
 		return totalPrice;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param payment
 	 * @return
 	 */
 	public Amount pay(CashPayment payment) {
 		// calculate change
-		addPayment(sale);
+		addPayment(this);
 		return change;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param discountRules
 	 * @return
 	 */

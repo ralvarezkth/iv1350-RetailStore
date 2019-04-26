@@ -11,24 +11,24 @@ import retailstore.integration.DiscountRules;
 import retailstore.integration.Amount;
 import retailstore.integration.CustomerIDDTO;
 /**
- * 
+ *
  * @author User
  *
  */
 public class Controller {
 	private RegistryCreator creator;
 	private Sale sale;
-	
+
 	/**
 	 * Creates a new instance.
-	 * 
-	 * @param creator Used to get all classes that handle database calls	
+	 *
+	 * @param creator Used to get all classes that handle database calls
 	 */
 	public Controller (RegistryCreator creator) {
 		this.creator = creator;
 		CashRegister cashRegister = new CashRegister();
 	}
-	
+
 	/**
 	 * Creates a new instance
 	 */
@@ -37,23 +37,23 @@ public class Controller {
 	}
 	
 	/**
-	 * 
+	 *
 	 * @param itemIdentifier
 	 * @param quantity
 	 * @return
 	 */
 	public SaleDTO enterIdentifier(String itemIdentifier, int quantity) {
 		ItemDTO foundItem = creator.itemRegistry.findItem(itemIdentifier);
-		
+
 		//enterNewIdentifier();
-		
+
 		SaleDTO saleDTO = sale.addItem(foundItem, quantity);
-		
+
 		return saleDTO;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param paidAmount
 	 * @return
 	 */
@@ -61,21 +61,21 @@ public class Controller {
 		CashPayment payment = new CashPayment(paidAmount);
 		Amount change = sale.pay(payment);
 		sale.printReceipt(printer);
-		return change; 
+		return change;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public Amount signalFinished() {
 		Amount totalPrice = sale.getTotalPrice();
-		
+
 		return totalPrice;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param customerID
 	 * @param sale
 	 * @return
@@ -83,8 +83,8 @@ public class Controller {
 	public Amount discountRequest(CustomerIDDTO customerID, Sale sale) {
 		DiscountRules discountRules = creator.discountRules.checkRules(customerID, sale);
 		Amount priceAfterDiscount = sale.calculatePriceAfterDiscount(discountRules);
-		
+
 		return priceAfterDiscount;
 	}
-	
+
 }
