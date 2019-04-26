@@ -3,6 +3,7 @@ package retailstore.model;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemDTO;
 import retailstore.model.CashRegister;
+import retailstore.model.SaleDTO;
 
 public class Sale {
 	private String dateOfSale;
@@ -52,7 +53,7 @@ public class Sale {
 	 */
 	public Amount pay(CashPayment payment) {
 		// calculate change
-		addPayment(sale);
+		addPayment(this);
 		return change;
 	}
 	

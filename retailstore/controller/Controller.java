@@ -9,6 +9,7 @@ import retailstore.integration.RegistryCreator;
 import retailstore.integration.ItemDTO;
 import retailstore.integration.DiscountRules;
 import retailstore.integration.Amount;
+import retailstore.integration.CustomerIDDTO;
 
 /**
  * 
