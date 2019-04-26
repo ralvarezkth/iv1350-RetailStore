@@ -1,6 +1,7 @@
 package retailstore.model;
 
 import retailstore.integration.ItemDTO;
+import retailstore.integration.RegistryCreator;
 
 public class CashRegister {
 
@@ -18,5 +19,9 @@ public class CashRegister {
 	 */
 	void calculateRunningTotal (ItemDTO foundItem, int quantity) {
 		
+	}
+	
+	void addPayment (Sale sale) {
+		logSale(sale);
 	}
 }
