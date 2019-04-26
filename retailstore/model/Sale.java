@@ -47,6 +47,17 @@ public class Sale {
 	
 	/**
 	 * 
+	 * @param payment
+	 * @return
+	 */
+	public Amount pay(CashPayment payment) {
+		// calculate change
+		addPayment(sale);
+		return change;
+	}
+	
+	/**
+	 * 
 	 * @param discountRules
 	 * @return
 	 */

@@ -1,13 +1,13 @@
 package retailstore.integration;
 
 public class Amount {
-	//some amount fields
+	private double amount;
 
 	/**
 	 * Creates a new instance
 	 */
-	public Amount () {
-			
+	public Amount (double amount) {
+			this.amount = amount;
 	}
 	
 }
