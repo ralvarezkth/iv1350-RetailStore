@@ -10,6 +10,7 @@ import retailstore.integration.ItemDTO;
 import retailstore.integration.DiscountRules;
 import retailstore.integration.Amount;
 import retailstore.integration.CustomerIDDTO;
+import retailstore.integration.ItemIdentifierDTO;
 /**
  * 
  * @author User
@@ -42,7 +43,7 @@ public class Controller {
 	 * @param quantity
 	 * @return
 	 */
-	public SaleDTO enterIdentifier(String itemIdentifier, int quantity) {
+	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) {
 		ItemDTO foundItem = creator.itemRegistry.findItem(itemIdentifier);
 		
 		//enterNewIdentifier();

@@ -16,7 +16,7 @@ public class ItemRegistry {
 	 * @param itemIdentifier
 	 * @return
 	 */
-	public ItemDTO findItem(String itemIdentifier) {
+	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) {
 		
 		// check itemIdentifier with itemRegistry
 		

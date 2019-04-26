@@ -25,13 +25,18 @@ public class View {
 	 */
 	public void sampleExecution() {
 		contr.startNewSale();
-		//enterIdentifier
-		contr.signalFinished();
-		Amount paidAmount = new Amount(1000);
-		contr.enterPaidAmount(paidAmount);
 		
 		ItemIdentifierDTO validItemIdentifier = new ItemIdentifierDTO("0123456789");
 		ItemIdentifierDTO invalidItemIdentifier = new ItemIdentifierDTO("0000000000");
+		
+		contr.enterIdentifier(validItemIdentifier, 1);
+		contr.enterIdentifier(invalidItemIdentifier, 1);
+		
+		contr.signalFinished();
+		
+		Amount paidAmount = new Amount(1000);
+		
+		contr.enterPaidAmount(paidAmount);
 		
 		CustomerIDDTO customerWithDiscount = new CustomerIDDTO("Rolf", "999999"); 
 		CustomerIDDTO customerWithoutDiscount = new CustomerIDDTO("Ellinor", "000000");
