@@ -3,10 +3,12 @@ package retailstore.controller;
 import retailstore.model.Sale;
 import retailstore.model.CashRegister;
 import retailstore.model.SaleDTO;
+import retailstore.model.CashPayment;
 import retailstore.integration.ItemRegistry;
 import retailstore.integration.RegistryCreator;
 import retailstore.integration.ItemDTO;
 import retailstore.integration.DiscountRules;
+import retailstore.integration.Amount;
 
 /**
  * 
@@ -14,6 +16,8 @@ import retailstore.integration.DiscountRules;
  *
  */
 public class Controller {
+	private RegistryCreator creator;
+	private Sale sale;
 	
 	/**
 	 * Creates a new instance.
@@ -21,6 +25,7 @@ public class Controller {
 	 * @param creator Used to get all classes that handle database calls	
 	 */
 	public Controller (RegistryCreator creator) {
+		this.creator = creator;
 		CashRegister cashRegister = new CashRegister();
 	}
 	
@@ -28,7 +33,7 @@ public class Controller {
 	 * Creates a new instance
 	 */
 	public void startNewSale() {
-		Sale sale = new Sale();
+		this.sale = new Sale();
 	}
 	
 	/**
@@ -45,6 +50,18 @@ public class Controller {
 		SaleDTO saleDTO = addItem(foundItem, quantity);
 		
 		return saleDTO;
+	}
+	
+	/**
+	 * 
+	 * @param paidAmount
+	 * @return
+	 */
+	public Amount enterPaidAmount (Amount paidAmount) {
+		CashPayment payment = new CashPayment(paidAmount);
+		Amount change = sale.pay(payment);
+		printReceipt(printer);
+		return change; 
 	}
 	
 	/**

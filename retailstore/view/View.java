@@ -1,6 +1,7 @@
 package retailstore.view;
 
 import retailstore.controller.Controller;
+import retailstore.integration.Amount;
 import retailstore.integration.ItemIdentifierDTO;
 import retailstore.integration.CustomerIDDTO;;
 
@@ -23,7 +24,11 @@ public class View {
 	 * Simulates a user input that generates calls to all system operations.
 	 */
 	public void sampleExecution() {
-		//startNewSale();
+		contr.startNewSale();
+		//enterIdentifier
+		signalFinished();
+		Amount paidAmount = new Amount(1000);
+		contr.enterPaidAmount(paidAmount);
 		
 		ItemIdentifierDTO validItemIdentifier = new ItemIdentifierDTO("0123456789");
 		ItemIdentifierDTO invalidItemIdentifier = new ItemIdentifierDTO("0000000000");
