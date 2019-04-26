@@ -6,21 +6,26 @@ package retailstore.integration;
  *
  */
 public class RegistryCreator {
+	private AccountingSystemHandler accountingSystemHandler;
+	private InventorySystemHandler inventorySystemHandler;
+	private ItemRegistry itemRegistry;
+	private SaleLog saleLog;
+	private DiscountRules discountRules;
 	
 	/**
 	 * Creates an instance
 	 * 
 	 */
 	public RegistryCreator() {
-		AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
+		this.accountingSystemHandler = new AccountingSystemHandler();
 		
-		InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
+		this.inventorySystemHandler = new InventorySystemHandler();
 		
-		ItemRegistry itemRegistry = new ItemRegistry();
+		this.itemRegistry = new ItemRegistry();
 		
-		SaleLog saleLog = new SaleLog();
+		this.saleLog = new SaleLog();
 		
-		DiscountRules discountRules = new DiscountRules();	
+		this.discountRules = new DiscountRules();	
 	}
 	
 }
