@@ -26,7 +26,7 @@ public class View {
 	public void sampleExecution() {
 		contr.startNewSale();
 		//enterIdentifier
-		signalFinished();
+		contr.signalFinished();
 		Amount paidAmount = new Amount(1000);
 		contr.enterPaidAmount(paidAmount);
 		

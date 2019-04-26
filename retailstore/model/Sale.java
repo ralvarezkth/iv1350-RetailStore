@@ -3,6 +3,7 @@ package retailstore.model;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemDTO;
 import retailstore.model.CashRegister;
+import retailstore.integration.DiscountRules;
 
 public class Sale {
 	private String dateOfSale;

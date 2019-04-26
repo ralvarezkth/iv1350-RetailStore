@@ -9,7 +9,7 @@ import retailstore.integration.RegistryCreator;
 import retailstore.integration.ItemDTO;
 import retailstore.integration.DiscountRules;
 import retailstore.integration.Amount;
-
+import retailstore.integration.CustomerIDDTO;
 /**
  * 
  * @author User
@@ -43,11 +43,11 @@ public class Controller {
 	 * @return
 	 */
 	public SaleDTO enterIdentifier(String itemIdentifier, int quantity) {
-		ItemDTO foundItem = findItem(itemIdentifier);
+		ItemDTO foundItem = creator.itemRegistry.findItem(itemIdentifier);
 		
 		//enterNewIdentifier();
 		
-		SaleDTO saleDTO = addItem(foundItem, quantity);
+		SaleDTO saleDTO = sale.addItem(foundItem, quantity);
 		
 		return saleDTO;
 	}
@@ -60,7 +60,7 @@ public class Controller {
 	public Amount enterPaidAmount (Amount paidAmount) {
 		CashPayment payment = new CashPayment(paidAmount);
 		Amount change = sale.pay(payment);
-		printReceipt(printer);
+		sale.printReceipt(printer);
 		return change; 
 	}
 	
@@ -69,7 +69,7 @@ public class Controller {
 	 * @return
 	 */
 	public Amount signalFinished() {
-		Amount totalPrice = getTotalPrice();
+		Amount totalPrice = sale.getTotalPrice();
 		
 		return totalPrice;
 	}
@@ -81,8 +81,8 @@ public class Controller {
 	 * @return
 	 */
 	public Amount discountRequest(CustomerIDDTO customerID, Sale sale) {
-		DiscountRules discountRules = checkRules(customerID, sale);
-		Amount priceAfterDiscount = calculatePriceAfterDiscount(discountRules);
+		DiscountRules discountRules = creator.discountRules.checkRules(customerID, sale);
+		Amount priceAfterDiscount = sale.calculatePriceAfterDiscount(discountRules);
 		
 		return priceAfterDiscount;
 	}

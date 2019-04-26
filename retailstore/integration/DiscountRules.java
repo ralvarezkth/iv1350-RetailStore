@@ -1,5 +1,7 @@
 package retailstore.integration;
 
+import retailstore.model.Sale;
+
 public class DiscountRules {
 	
 	/**

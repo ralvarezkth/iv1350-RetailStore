@@ -6,11 +6,11 @@ package retailstore.integration;
  *
  */
 public class RegistryCreator {
-	private AccountingSystemHandler accountingSystemHandler;
-	private InventorySystemHandler inventorySystemHandler;
-	private ItemRegistry itemRegistry;
-	private SaleLog saleLog;
-	private DiscountRules discountRules;
+	public AccountingSystemHandler accountingSystemHandler;
+	public InventorySystemHandler inventorySystemHandler;
+	public ItemRegistry itemRegistry;
+	public SaleLog saleLog;
+	public DiscountRules discountRules;
 	
 	/**
 	 * Creates an instance
