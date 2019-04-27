@@ -9,6 +9,7 @@ public class ItemDTO {
 	private Amount price;
 	private Amount VATrate;
 	private String name;
+	private ItemIdentifierDTO itemIdentifier;
 	
 	/**
 	 * Creates a new instance representing a particular item.
@@ -17,10 +18,11 @@ public class ItemDTO {
 	 * @param VATrate
 	 * @param name
 	 */
-	public ItemDTO(Amount price, Amount VATrate, String name) {
+	public ItemDTO(Amount price, Amount VATrate, String name, ItemIdentifierDTO itemIdentifier) {
 		this.price = price;
 		this.VATrate = VATrate;
 		this.name = name;
+		this.itemIdentifier = itemIdentifier;
 		
 	}
 	

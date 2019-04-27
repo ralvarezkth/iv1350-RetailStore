@@ -81,7 +81,7 @@ public class Controller {
 	 * @param sale
 	 * @return
 	 */
-	public Amount discountRequest(CustomerIDDTO customerID, Sale sale) {
+	public Amount discountRequest(CustomerIDDTO customerID) {
 		DiscountRules discountRules = creator.discountRules.checkRules(customerID, sale);
 		Amount priceAfterDiscount = sale.calculatePriceAfterDiscount(discountRules);
 

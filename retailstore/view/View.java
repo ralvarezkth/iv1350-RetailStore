@@ -30,16 +30,21 @@ public class View {
 		ItemIdentifierDTO invalidItemIdentifier = new ItemIdentifierDTO("0000000000");
 		
 		contr.enterIdentifier(validItemIdentifier, 1);
+		contr.enterIdentifier(validItemIdentifier, 4);
 		contr.enterIdentifier(invalidItemIdentifier, 1);
 		
-		contr.signalFinished();
+		Amount totalPrice = contr.signalFinished();
+		
+		CustomerIDDTO customerWithDiscount = new CustomerIDDTO("Rolf", "999999"); 
+		CustomerIDDTO customerWithoutDiscount = new CustomerIDDTO("Ellinor", "000000");
+		
+		Amount priceAfterDiscount = contr.discountRequest(customerWithDiscount);
+		Amount noDiscount = contr.discountRequest(customerWithoutDiscount);
 		
 		Amount paidAmount = new Amount(1000);
 		
 		contr.enterPaidAmount(paidAmount);
 		
-		CustomerIDDTO customerWithDiscount = new CustomerIDDTO("Rolf", "999999"); 
-		CustomerIDDTO customerWithoutDiscount = new CustomerIDDTO("Ellinor", "000000");
 	}
 	
 }
