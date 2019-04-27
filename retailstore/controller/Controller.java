@@ -11,6 +11,7 @@ import retailstore.integration.DiscountRules;
 import retailstore.integration.Amount;
 import retailstore.integration.CustomerIDDTO;
 import retailstore.integration.ItemIdentifierDTO;
+import retailstore.integration.Printer;
 /**
  *
  * @author User
@@ -19,15 +20,18 @@ import retailstore.integration.ItemIdentifierDTO;
 public class Controller {
 	private RegistryCreator creator;
 	private Sale sale;
+	private Printer printer;
 
 	/**
 	 * Creates a new instance.
 	 *
 	 * @param creator Used to get all classes that handle database calls
 	 */
-	public Controller (RegistryCreator creator) {
+	public Controller (RegistryCreator creator, Printer printer) {
 		this.creator = creator;
+		this.printer = printer;
 		CashRegister cashRegister = new CashRegister();
+		
 	}
 
 	/**

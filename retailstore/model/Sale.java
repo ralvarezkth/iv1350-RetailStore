@@ -4,6 +4,7 @@ import retailstore.integration.Amount;
 import retailstore.integration.ItemDTO;
 import retailstore.model.CashRegister;
 import retailstore.integration.DiscountRules;
+import retailstore.integration.Printer;
 
 public class Sale {
 	private String dateOfSale;
@@ -14,6 +15,7 @@ public class Sale {
 			Amount runningTotal;
 	private Amount change;
 	private Amount paidAmount;
+	private CashPayment cashPayment;
 	//private <listOfItems> listOfItems; // fix this
 
 	/**
@@ -56,6 +58,10 @@ public class Sale {
 		addPayment(this);
 		return change;
 	}
+	
+	public void printReceipt(Printer printer) {
+		// print receipt
+	}
 
 	/**
 	 *
@@ -63,6 +69,7 @@ public class Sale {
 	 * @return
 	 */
 	public Amount calculatePriceAfterDiscount(DiscountRules discountRules) {
+		
 		return priceAfterDiscount;
 	}
 
