@@ -27,7 +27,7 @@ public class ItemRegistry {
 	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) {
 		for(int i = 0; i < items.size(); i++) {
 			ItemDTO item = (ItemDTO) items.get(i);
-			if(itemIdentifier == item.itemIdentifier)
+			if(itemIdentifier.equals(item.itemIdentifier))
 				break;
 		}
 		
