@@ -21,7 +21,7 @@ public class Controller {
 	private RegistryCreator creator;
 	private Sale sale;
 	private Printer printer;
-
+	private CashRegister cashRegister;
 	/**
 	 * Creates a new instance.
 	 *
@@ -30,7 +30,7 @@ public class Controller {
 	public Controller (RegistryCreator creator, Printer printer) {
 		this.creator = creator;
 		this.printer = printer;
-		CashRegister cashRegister = new CashRegister();
+		this.cashRegister = new CashRegister();
 		
 	}
 
@@ -38,7 +38,7 @@ public class Controller {
 	 * Creates a new instance
 	 */
 	public void startNewSale() {
-		this.sale = new Sale();
+		this.sale = new Sale(cashRegister);
 	}
 	
 	/**
@@ -86,7 +86,7 @@ public class Controller {
 	 * @return
 	 */
 	public Amount discountRequest(CustomerIDDTO customerID) {
-		DiscountRules discountRules = creator.discountRules.checkRules(customerID, sale);
+		DiscountRules discountRules = creator.discountRules.checkRules(customerID);
 		Amount priceAfterDiscount = sale.calculatePriceAfterDiscount(discountRules);
 
 		return priceAfterDiscount;

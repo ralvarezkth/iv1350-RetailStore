@@ -26,20 +26,21 @@ public class View {
 	public void sampleExecution() {
 		contr.startNewSale();
 		
-		ItemIdentifierDTO validItemIdentifier = new ItemIdentifierDTO("0123456789");
+		ItemIdentifierDTO firstValidItemIdentifier = new ItemIdentifierDTO("0123456789");
+		ItemIdentifierDTO secondValidItemIdentifier = new ItemIdentifierDTO("1231231231");
 		ItemIdentifierDTO invalidItemIdentifier = new ItemIdentifierDTO("0000000000");
 		
-		contr.enterIdentifier(validItemIdentifier, 1);
-		contr.enterIdentifier(validItemIdentifier, 4);
+		contr.enterIdentifier(firstValidItemIdentifier, 1);
+		contr.enterIdentifier(secondValidItemIdentifier, 4);
 		contr.enterIdentifier(invalidItemIdentifier, 1);
 		
 		Amount totalPrice = contr.signalFinished();
 		
-		CustomerIDDTO customerWithDiscount = new CustomerIDDTO("Rolf", "999999"); 
-		CustomerIDDTO customerWithoutDiscount = new CustomerIDDTO("Ellinor", "000000");
+		CustomerIDDTO exampleCustomerWithDiscount = new CustomerIDDTO("Aria", 999999); 
+		CustomerIDDTO exampleCustomerWithoutDiscount = new CustomerIDDTO("Ellinor", 000000);
 		
-		Amount priceAfterDiscount = contr.discountRequest(customerWithDiscount);
-		Amount noDiscount = contr.discountRequest(customerWithoutDiscount);
+		Amount examplePriceWithDiscount = contr.discountRequest(exampleCustomerWithDiscount);
+		Amount examplePriceWithoutDiscount = contr.discountRequest(exampleCustomerWithoutDiscount);
 		
 		Amount paidAmount = new Amount(1000);
 		

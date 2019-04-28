@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class ItemRegistry {
 	
-	private List<ItemDTO> items = new ArrayList<>();
+	private List<ItemDTO> exampleItemDB = new ArrayList<>();
 	
 	/**
 	 * Creates an instance
@@ -25,13 +25,14 @@ public class ItemRegistry {
 	 * @return
 	 */
 	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) {
-		for(int i = 0; i < items.size(); i++) {
-			ItemDTO item = (ItemDTO) items.get(i);
-			if(itemIdentifier.equals(item.itemIdentifier))
+		ItemDTO foundItem = null;
+		for(int i = 0; i < exampleItemDB.size(); i++) {
+			 foundItem = (ItemDTO) exampleItemDB.get(i);
+			if(itemIdentifier.equals(foundItem.itemIdentifier))
 				break;
 		}
 		
-		return item;
+		return foundItem;
 	}
 	
 	/**
@@ -42,9 +43,16 @@ public class ItemRegistry {
 		ItemIdentifierDTO itemIdentifierBread = new ItemIdentifierDTO("1231231231");
 		ItemIdentifierDTO itemIdentifierChips = new ItemIdentifierDTO("5555555555");
 		
-		items.add(new ItemDTO(15, 0.25, "corn", itemIdentifierCorn));
-		items.add(new ItemDTO(20, 0.2, "bread", itemIdentifierBread));
-		items.add(new ItemDTO(25, 0.3, "chips", itemIdentifierChips));
+		Amount cornPrice 	= new Amount(15);
+		Amount cornVATrate 	= new Amount(0.25);
+		Amount breadPrice 	= new Amount(20);
+		Amount breadVATrate = new Amount(0.2);
+		Amount chipsPrice 	= new Amount(25);
+		Amount chipsVATrate = new Amount(0.3);
+		
+		exampleItemDB.add(new ItemDTO(cornPrice, cornVATrate, "Corn", itemIdentifierCorn));
+		exampleItemDB.add(new ItemDTO(breadPrice, breadVATrate, "Bread", itemIdentifierBread));
+		exampleItemDB.add(new ItemDTO(chipsPrice, chipsVATrate, "Chips", itemIdentifierChips));
 	}
 	
 

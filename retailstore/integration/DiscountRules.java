@@ -1,8 +1,7 @@
 package retailstore.integration;
 
-import retailstore.model.Sale;
-
 public class DiscountRules {
+	private Amount discountPercentage = new Amount(0);
 	
 	/**
 	 * Creates an instance
@@ -17,8 +16,15 @@ public class DiscountRules {
 	 * @param sale
 	 * @return
 	 */
-	public DiscountRules checkRules(CustomerIDDTO customerID, Sale sale) {
-		return discountRules;
+	public DiscountRules checkRules(CustomerIDDTO customerID) {
+		if (customerID.ID >= 555555) {
+			this.discountPercentage = new Amount(0.2);
+		}
+		return this;
+	}
+	
+	public Amount getDiscountPercentage() {
+		return this.discountPercentage;
 	}
 
 }

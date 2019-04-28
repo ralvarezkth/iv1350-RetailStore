@@ -20,7 +20,7 @@ public class Main {
 		
 		Printer printer = new Printer();
 		
-		Controller contr = new Controller(creator);
+		Controller contr = new Controller(creator, printer);
 		
 		View view = new View(contr);
 		

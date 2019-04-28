@@ -1,5 +1,6 @@
 package retailstore.model;
-
+import java.util.ArrayList;
+import java.util.List;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemDTO;
 import retailstore.model.CashRegister;
@@ -16,12 +17,15 @@ public class Sale {
 	private Amount change;
 	private Amount paidAmount;
 	private CashPayment cashPayment;
-	//private <listOfItems> listOfItems; // fix this
+	private List<ItemDTO> listOfItems = new ArrayList<>();
+	private CashRegister cashRegister;
+	
 
 	/**
 	 * Creates a new instance
 	 */
-	public Sale () {
+	public Sale (CashRegister cashRegister) {
+		this.cashRegister = cashRegister;
 
 	}
 
@@ -32,7 +36,7 @@ public class Sale {
 	 * @return
 	 */
 	public SaleDTO addItem (ItemDTO foundItem, int quantity) {
-		calculateRunningTotal (foundItem, quantity);
+		cashRegister.calculateRunningTotal (foundItem, quantity);
 		SaleDTO saleDTO = new SaleDTO(foundItem, runningTotal);
 
 		return saleDTO;
@@ -43,9 +47,8 @@ public class Sale {
 	 * @return
 	 */
 	public Amount getTotalPrice() {
-		Amount totalPrice = this.totalPrice;
-
-		return totalPrice;
+		this.totalPrice = this.runningTotal;
+		return this.totalPrice;
 	}
 
 	/**
@@ -55,7 +58,7 @@ public class Sale {
 	 */
 	public Amount pay(CashPayment payment) {
 		// calculate change
-		addPayment(this);
+		cashRegister.addPayment(this);
 		return change;
 	}
 	
@@ -69,8 +72,12 @@ public class Sale {
 	 * @return
 	 */
 	public Amount calculatePriceAfterDiscount(DiscountRules discountRules) {
+		double priceAfterDiscount = this.totalPrice.getAmount() 
+				* (1 - discountRules.getDiscountPercentage().getAmount());
 		
-		return priceAfterDiscount;
+		this.totalPrice = new Amount(priceAfterDiscount);
+		
+		return this.totalPrice;
 	}
 
 }

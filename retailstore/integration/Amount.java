@@ -9,5 +9,8 @@ public class Amount {
 	public Amount (double amount) {
 			this.amount = amount;
 	}
+	public double getAmount() {
+		return this.amount;
+	}
 	
 }

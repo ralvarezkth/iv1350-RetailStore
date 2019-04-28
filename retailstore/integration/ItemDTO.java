@@ -9,7 +9,7 @@ public class ItemDTO {
 	private Amount price;
 	private Amount VATrate;
 	private String name;
-	private ItemIdentifierDTO itemIdentifier;
+			ItemIdentifierDTO itemIdentifier;
 	
 	/**
 	 * Creates a new instance representing a particular item.

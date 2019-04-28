@@ -1,15 +1,15 @@
 package retailstore.integration;
 
 public class CustomerIDDTO {
-	private String name;
-	private String ID;
+	String name;
+	int ID;
 	
 	/**
 	 * 
 	 * @param name
 	 * @param ID
 	 */
-	public CustomerIDDTO(String name, String ID) {
+	public CustomerIDDTO(String name, int ID) {
 		this.name = name;
 		this.ID = ID;
 	}
