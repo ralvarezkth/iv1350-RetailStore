@@ -15,8 +15,8 @@ public class SaleLog {
 	 * 
 	 * @param sale
 	 */
-	private void logSale(Sale sale) {
-		// logs sale in database
+	public void logSale(Sale sale) {
+		System.out.println("Logging sale...");
 		
 	}
 

@@ -18,7 +18,7 @@ public class DiscountRules {
 	 */
 	public DiscountRules checkRules(CustomerIDDTO customerID) {
 		if (customerID.ID >= 555555) {
-			this.discountPercentage = new Amount(0.2);
+			this.discountPercentage = new Amount(0.1);
 		}
 		return this;
 	}

@@ -6,14 +6,15 @@ import retailstore.integration.ItemDTO;
 import retailstore.model.CashRegister;
 import retailstore.integration.DiscountRules;
 import retailstore.integration.Printer;
+import retailstore.model.Receipt;
 
 public class Sale {
-	private String dateOfSale;
-	private String timeOfSale;
-	private String saleID;
-	private Amount totalPrice;
+	private String dateOfSale = "2 maj 2019";
+	private String timeOfSale = "12:00";
+	private String saleID = "123";
+	private Amount totalPrice = new Amount(0);
 	private Amount totalVAT;
-			Amount runningTotal;
+			Amount runningTotal = new Amount(0);
 	private Amount change;
 	private Amount paidAmount;
 	private CashPayment cashPayment;
@@ -36,19 +37,11 @@ public class Sale {
 	 * @return
 	 */
 	public SaleDTO addItem (ItemDTO foundItem, int quantity) {
-		cashRegister.calculateRunningTotal (foundItem, quantity);
+		listOfItems.add(foundItem);
+		cashRegister.calculateRunningTotal (this, foundItem, quantity);
 		SaleDTO saleDTO = new SaleDTO(foundItem, runningTotal);
 
 		return saleDTO;
-	}
-
-	/**
-	 *
-	 * @return
-	 */
-	public Amount getTotalPrice() {
-		this.totalPrice = this.runningTotal;
-		return this.totalPrice;
 	}
 
 	/**
@@ -57,13 +50,17 @@ public class Sale {
 	 * @return
 	 */
 	public Amount pay(CashPayment payment) {
-		// calculate change
-		cashRegister.addPayment(this);
+		this.change = new Amount(payment.getPaidAmount().getAmount() - this.totalPrice.getAmount());
 		return change;
 	}
-	
+	/**
+	 * 
+	 * @param printer
+	 */
 	public void printReceipt(Printer printer) {
-		// print receipt
+		Receipt receipt = new Receipt(this);
+		printer.printReceipt (receipt);
+		cashRegister.addPayment(this);
 	}
 
 	/**
@@ -79,5 +76,32 @@ public class Sale {
 		
 		return this.totalPrice;
 	}
-
+	/**
+	 * 
+	 */
+	public void updateTotalPrice() {
+		this.totalPrice = this.runningTotal;
+	}
+	
+	public String getDateOfSale () {
+		return this.dateOfSale;
+	}
+	public String getTimeOfSale () {
+		return this.timeOfSale;
+	}
+	public String getSaleID () {
+		return this.saleID;
+	}
+	public Amount getTotalPrice () {
+		return this.totalPrice;
+	}
+	public Amount getTotalVAT () {
+		return this.totalVAT;
+	}
+	public Amount getChange () {
+		return this.change;
+	}
+	public Amount getPaidAmount () {
+		return this.paidAmount;
+	}
 }

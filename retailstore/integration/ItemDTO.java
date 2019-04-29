@@ -9,7 +9,7 @@ public class ItemDTO {
 	private Amount price;
 	private Amount VATrate;
 	private String name;
-			ItemIdentifierDTO itemIdentifier;
+	private	ItemIdentifierDTO itemIdentifier;
 	
 	/**
 	 * Creates a new instance representing a particular item.
@@ -25,5 +25,25 @@ public class ItemDTO {
 		this.itemIdentifier = itemIdentifier;
 		
 	}
+	
+	public ItemIdentifierDTO getItemIdentifierDTO () {
+		return this.itemIdentifier;
+	}
+	
+	public Amount getPrice () {
+		return this.price;
+	}
+	
+	public Amount getVATrate () {
+		return this.VATrate;
+	}
+	
+	public String getName () {
+		return this.name;
+	}
+	
+	
+	
+	
 	
 }

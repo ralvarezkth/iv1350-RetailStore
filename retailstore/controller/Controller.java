@@ -4,7 +4,6 @@ import retailstore.model.Sale;
 import retailstore.model.CashRegister;
 import retailstore.model.SaleDTO;
 import retailstore.model.CashPayment;
-import retailstore.integration.ItemRegistry;
 import retailstore.integration.RegistryCreator;
 import retailstore.integration.ItemDTO;
 import retailstore.integration.DiscountRules;
@@ -30,7 +29,7 @@ public class Controller {
 	public Controller (RegistryCreator creator, Printer printer) {
 		this.creator = creator;
 		this.printer = printer;
-		this.cashRegister = new CashRegister();
+		this.cashRegister = new CashRegister(creator);
 		
 	}
 
@@ -50,7 +49,8 @@ public class Controller {
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) {
 		ItemDTO foundItem = creator.itemRegistry.findItem(itemIdentifier);
 
-		//enterNewIdentifier();
+		if (foundItem == null)
+			return null;
 
 		SaleDTO saleDTO = sale.addItem(foundItem, quantity);
 
@@ -66,6 +66,8 @@ public class Controller {
 		CashPayment payment = new CashPayment(paidAmount);
 		Amount change = sale.pay(payment);
 		sale.printReceipt(printer);
+		creator.accountingSystemHandler.sendSaleInformation(sale);
+		creator.inventorySystemHandler.sendSaleInformation(sale);
 		return change;
 	}
 
@@ -74,8 +76,8 @@ public class Controller {
 	 * @return
 	 */
 	public Amount signalFinished() {
+		sale.updateTotalPrice();
 		Amount totalPrice = sale.getTotalPrice();
-
 		return totalPrice;
 	}
 

@@ -1,5 +1,7 @@
 package retailstore.integration;
 
+import retailstore.model.Sale;
+
 public class InventorySystemHandler {
 	
 	/**
@@ -7,6 +9,10 @@ public class InventorySystemHandler {
 	 */
 	InventorySystemHandler() {
 		
+	}
+	
+	public void sendSaleInformation (Sale sale) {
+		System.out.println("Sending sale information to inventory system...");
 	}
 
 }

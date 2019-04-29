@@ -1,6 +1,7 @@
 package retailstore.view;
 
 import retailstore.controller.Controller;
+import retailstore.model.SaleDTO;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemIdentifierDTO;
 import retailstore.integration.CustomerIDDTO;;
@@ -30,22 +31,78 @@ public class View {
 		ItemIdentifierDTO secondValidItemIdentifier = new ItemIdentifierDTO("1231231231");
 		ItemIdentifierDTO invalidItemIdentifier = new ItemIdentifierDTO("0000000000");
 		
-		contr.enterIdentifier(firstValidItemIdentifier, 1);
-		contr.enterIdentifier(secondValidItemIdentifier, 4);
-		contr.enterIdentifier(invalidItemIdentifier, 1);
+		SaleDTO currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier, 1);
+		if (currentSaleDTO == null) {
+			System.out.println("No item was found.");
+		}
+		else {
+			System.out.println("Item name: " + currentSaleDTO.getFoundItem().getName());
+			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
+			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
+			System.out.println();
+			System.out.printf("Running total (including VAT): " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
+		}
+		System.out.println();
+		System.out.println();
+		
+		currentSaleDTO = contr.enterIdentifier(secondValidItemIdentifier, 4);
+		if (currentSaleDTO == null) {
+			System.out.println("No item was found.");
+		}
+		else {
+			System.out.println("Item name: " + currentSaleDTO.getFoundItem().getName());
+			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
+			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
+			System.out.println();
+			System.out.printf("Running total (including VAT): " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
+		}
+		System.out.println();
+		System.out.println();
+		
+		currentSaleDTO = contr.enterIdentifier(invalidItemIdentifier, 1);
+		if (currentSaleDTO == null) {
+			System.out.println("No item was found.");
+		}
+		else {
+			
+			System.out.println("Item name: " + currentSaleDTO.getFoundItem().getName());
+			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
+			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
+			System.out.println();
+			System.out.printf("Running total: " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
+		}
+		System.out.println();
+		System.out.println();
 		
 		Amount totalPrice = contr.signalFinished();
+		System.out.printf("Total price: " + "%.2f\n", totalPrice.getAmount());
 		
 		CustomerIDDTO exampleCustomerWithDiscount = new CustomerIDDTO("Aria", 999999); 
 		CustomerIDDTO exampleCustomerWithoutDiscount = new CustomerIDDTO("Ellinor", 000000);
 		
-		Amount examplePriceWithDiscount = contr.discountRequest(exampleCustomerWithDiscount);
-		Amount examplePriceWithoutDiscount = contr.discountRequest(exampleCustomerWithoutDiscount);
+		Amount priceAfterDiscountRequestForAria = contr.discountRequest(exampleCustomerWithDiscount);
+		if (priceAfterDiscountRequestForAria.getAmount() == totalPrice.getAmount()) {
+			System.out.println("Not eligible for a discount.");		}
+		else {
+		System.out.printf("Total price with discount: " + "%.2f\n", priceAfterDiscountRequestForAria.getAmount());
+		}
+		System.out.println();
 		
+		/*Amount priceAfterDiscountRequestForEllinor = contr.discountRequest(exampleCustomerWithoutDiscount);
+		if (priceAfterDiscountRequestForEllinor.getAmount() == totalPrice.getAmount()) {
+			System.out.println("Not eligible for a discount.");		}
+		else {
+		System.out.printf("Total price with discount: " + "%.2f\n", priceAfterDiscountRequestForEllinor.getAmount());
+		}
+		*/
 		Amount paidAmount = new Amount(1000);
 		
-		contr.enterPaidAmount(paidAmount);
-		
+		Amount change = contr.enterPaidAmount(paidAmount);
+		System.out.println();
+		System.out.printf("Change: " + "%.2f\n", change.getAmount());
+		System.out.println();
+		System.out.println("Thank you, please come again!");
+		System.out.println("Remember to add that alternative flow you forgot :)");
 	}
 	
 }

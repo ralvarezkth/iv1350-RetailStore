@@ -18,4 +18,25 @@ public class SaleDTO {
 		this.runningTotal = runningTotal;
 		
 	}
+	
+	public ItemDTO getFoundItem() {
+		return this.foundItem;
+	}
+	
+	public Amount getRunningTotal() {
+		return this.runningTotal;
+	}
+	
+	/*
+	public String toString() {
+		String saleDTO = new String ("");
+		
+		saleDTO = (
+				"Running Total: " +
+				"Item name: " + this.foundItem.getName()+
+				"Item price: " +
+				"Item VATrate: ");
+		
+		return saleDTO;
+	}*/
 }

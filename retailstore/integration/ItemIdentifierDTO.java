@@ -6,5 +6,9 @@ public class ItemIdentifierDTO {
 	public ItemIdentifierDTO(String itemIdentifier) {
 		this.itemIdentifier = itemIdentifier;
 	}
+	
+	public String getItemIdentifier() {
+		return this.itemIdentifier;
+	}
 
 }
