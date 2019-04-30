@@ -11,7 +11,7 @@ import retailstore.integration.Printer;
 import retailstore.model.Receipt;
 
 /**
- * Represents a particular sale, where a particular 
+ * Represents a particular sale, where a particular
  * customer purchases particular items.
  */
 public class Sale {
@@ -30,7 +30,7 @@ public class Sale {
 
 	/**
 	 * Creates a new instance.
-	 * 
+	 *
 	 * @param cashRegister The cash register that performs calculations for the sale.
 	 */
 	public Sale (CashRegister cashRegister) {
@@ -43,7 +43,7 @@ public class Sale {
 	 *
 	 * @param foundItem The found item that corresponds to the scanned item identifier.
 	 * @param quantity The quantity of the scanned item.
-	 * @return saleDTO 	Contains the itemDTO for the scanned item 
+	 * @return saleDTO 	Contains the itemDTO for the scanned item
 	 * 					and the running total of the sale.
 	 */
 	public SaleDTO addItem (ItemDTO foundItem, int quantity) {
@@ -66,9 +66,9 @@ public class Sale {
 
 	/**
 	 * Takes payment from the customer and calculates the change.
-	 * 
+	 *
 	 * @param payment The amount paid by the customer.
-	 * @return change The amount of change to give to the customer. 
+	 * @return change The amount of change to give to the customer.
 	 */
 	public Amount pay(CashPayment payment) {
 		this.change = new Amount(payment.getPaidAmount().getAmount() - this.totalPrice.getAmount());
@@ -77,7 +77,7 @@ public class Sale {
 
 	/**
 	 * Signals the external printer to print a receipt.
-	 * 
+	 *
 	 * @param printer Interface to printer.
 	 */
 	public void printReceipt(Printer printer) {
@@ -94,7 +94,7 @@ public class Sale {
 	 * 						customer is eligible for a discount.
 	 */
 	public Amount calculatePriceAfterDiscount(DiscountRules discountRules) {
-		double priceAfterDiscount = this.totalPrice.getAmount() 
+		double priceAfterDiscount = this.totalPrice.getAmount()
 				* (1 - discountRules.getDiscountPercentage().getAmount());
 
 		this.totalPrice = new Amount(priceAfterDiscount);
@@ -112,7 +112,7 @@ public class Sale {
 
 	/**
 	 * Gets the dateOfSale.
-	 * 
+	 *
 	 * @return dateOfSale The date when the sale was completed.
 	 */
 	public String getDateOfSale () {
@@ -121,7 +121,7 @@ public class Sale {
 
 	/**
 	 * Gets the timeOfSale.
-	 * 
+	 *
 	 * @return timeOfSale The time when the sale was completed.
 	 */
 	public String getTimeOfSale () {
@@ -130,7 +130,7 @@ public class Sale {
 
 	/**
 	 * Gets the saleID of the sale.
-	 * 
+	 *
 	 * @return saleID The saleID of the sale.
 	 */
 	public String getSaleID () {
@@ -139,7 +139,7 @@ public class Sale {
 
 	/**
 	 * Gets the totalPrice of the sale.
-	 * 
+	 *
 	 * @return totalPrice The totalPrice of the sale.
 	 */
 	public Amount getTotalPrice () {
@@ -148,7 +148,7 @@ public class Sale {
 
 	/**
 	 * Gets the totalVAT of the sale.
-	 * 
+	 *
 	 * @return totalVAT The total VAT of the sale.
 	 */
 	public Amount getTotalVAT () {
@@ -157,8 +157,8 @@ public class Sale {
 
 	/**
 	 * Gets the change after payment.
-	 * 
-	 * @return change The amount of change to give to the customer. 
+	 *
+	 * @return change The amount of change to give to the customer.
 	 */
 	public Amount getChange () {
 		return this.change;
@@ -166,7 +166,7 @@ public class Sale {
 
 	/**
 	 * Gets the paid amount by the customer.
-	 * 
+	 *
 	 * @return paidAmount The amount paid by the customer.
 	 */
 	public Amount getPaidAmount () {
