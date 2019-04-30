@@ -18,7 +18,7 @@ public class ItemRegistry {
 	 * Finds the item corresponding to the scanned item identifier.
 	 * 
 	 * @param itemIdentifier The item identifier to the scanned item.
-	 * @return The found item that corresponds to the scanned item identifier.
+	 * @return foundItem The found item that corresponds to the scanned item identifier.
 	 */
 	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) {
 		ItemDTO foundItem = null;

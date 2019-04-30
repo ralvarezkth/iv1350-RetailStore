@@ -51,7 +51,7 @@ public class RegistryCreator {
 	 * 
 	 * @return discountRules
 	 */
-	public DiscountRules discountRules() {
+	public DiscountRules getDiscountRules() {
 		return this.discountRules;
 	}
 

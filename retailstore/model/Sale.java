@@ -9,9 +9,8 @@ import retailstore.integration.Printer;
 import retailstore.model.Receipt;
 
 /**
- * 
- * @author User
- *
+ * Represents a particular sale, where a particular 
+ * customer purchases particular items.
  */
 public class Sale {
 	private String dateOfSale = "2 maj 2019";
@@ -36,10 +35,12 @@ public class Sale {
 	}
 
 	/**
+	 * 
 	 *
-	 * @param foundItem
-	 * @param quantity
-	 * @return
+	 * @param foundItem The found item that corresponds to the scanned item identifier.
+	 * @param quantity The quantity of of the scanned item.
+	 * @return saleDTO 	containing the itemDTO for the scanned item 
+	 * 					and the running total of the sale.
 	 */
 	public SaleDTO addItem (ItemDTO foundItem, int quantity) {
 		listOfItems.add(foundItem);
@@ -51,8 +52,9 @@ public class Sale {
 
 	/**
 	 *
-	 * @param payment
-	 * @return
+	 * @param payment The amount paid by the customer.
+	 * @return change 	The change based on the totalPrice of the 
+	 * 					sale and the amountPaid by the customer.
 	 */
 	public Amount pay(CashPayment payment) {
 		this.change = new Amount(payment.getPaidAmount().getAmount() - this.totalPrice.getAmount());
@@ -70,9 +72,12 @@ public class Sale {
 	}
 
 	/**
+	 * Calculates the price of the sale for a customer
+	 * after checking the discount rules.
 	 *
-	 * @param discountRules
-	 * @return
+	 * @param discountRules 
+	 * @return totalPrice 	The totalPrice after checking if the
+	 * 						customer is eligible for discount.
 	 */
 	public Amount calculatePriceAfterDiscount(DiscountRules discountRules) {
 		double priceAfterDiscount = this.totalPrice.getAmount() 
@@ -84,63 +89,72 @@ public class Sale {
 	}
 	
 	/**
-	 * 
+	 * Updates the totalPrice of the sale to the runningTotal
+	 * when the sale is signaled as finished.
 	 */
 	public void updateTotalPrice() {
 		this.totalPrice = this.runningTotal;
 	}
 	
 	/**
+	 * Get the dateOfSale.
 	 * 
-	 * @return
+	 * @return dateOfSale The date of when the sale was completed.
 	 */
 	public String getDateOfSale () {
 		return this.dateOfSale;
 	}
 	
 	/**
+	 * Get the timeOfSale.
 	 * 
-	 * @return
+	 * @return timeOfSale The time of when the sale was completed.
 	 */
 	public String getTimeOfSale () {
 		return this.timeOfSale;
 	}
 	
 	/**
+	 * Get the saleID of the sale.
 	 * 
-	 * @return
+	 * @return saleID The saleID of the sale.
 	 */
 	public String getSaleID () {
 		return this.saleID;
 	}
 	
 	/**
+	 * Get the totalPrice of the sale.
 	 * 
-	 * @return
+	 * @return totalPrice The totalPrice of the sale.
 	 */
 	public Amount getTotalPrice () {
 		return this.totalPrice;
 	}
 	
 	/**
+	 * Get the totalVAT of the sale.
 	 * 
-	 * @return
+	 * @return totalVAT The total VAT of the sale.
 	 */
 	public Amount getTotalVAT () {
 		return this.totalVAT;
 	}
 	
 	/**
+	 * Get the change after payment.
 	 * 
-	 * @return
+	 * @return change 	The change based on the totalPrice of the 
+	 * 					sale and the amountPaid by the customer.
 	 */
 	public Amount getChange () {
 		return this.change;
 	}
 	
 	/**
+	 * Get the paidAmount that the customer handed over.
 	 * 
-	 * @return
+	 * @return paidAmount The amount the customer handed over.
 	 */
 	public Amount getPaidAmount () {
 		return this.paidAmount;
