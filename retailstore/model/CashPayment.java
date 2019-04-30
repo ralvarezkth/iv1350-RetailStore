@@ -2,6 +2,11 @@ package retailstore.model;
 
 import retailstore.integration.Amount;
 
+/**
+ * 
+ * @author User
+ *
+ */
 public class CashPayment {
 	private Amount paidAmount;
 	
@@ -12,6 +17,11 @@ public class CashPayment {
 	public CashPayment (Amount paidAmount) {
 		this.paidAmount = paidAmount;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Amount getPaidAmount() {
 		return this.paidAmount;
 	}

@@ -1,9 +1,7 @@
 package retailstore.integration;
 
 /**
- * 
- * @author User
- *
+ * Contains information about one particular item.
  */
 public class ItemDTO {
 	private Amount price;
@@ -14,9 +12,10 @@ public class ItemDTO {
 	/**
 	 * Creates a new instance representing a particular item.
 	 * 
-	 * @param price
-	 * @param VATrate
-	 * @param name
+	 * @param price The price of the item including VAT.
+	 * @param VATrate The VAT rate of the item.
+	 * @param name The name of the item.
+	 * @param itemIdentifier The itemIdentifier of the item.
 	 */
 	public ItemDTO(Amount price, Amount VATrate, String name, ItemIdentifierDTO itemIdentifier) {
 		this.price = price;
@@ -26,18 +25,38 @@ public class ItemDTO {
 		
 	}
 	
+	/**
+	 * Get the itemIdentifier of the Item.
+	 * 
+	 * @return itemIdentifier The itemIdentifier of the item.
+	 */
 	public ItemIdentifierDTO getItemIdentifierDTO () {
 		return this.itemIdentifier;
 	}
 	
+	/**
+	 * Get the price of the item including VAT.
+	 * 
+	 * @return price The price of the item.
+	 */
 	public Amount getPrice () {
 		return this.price;
 	}
 	
+	/**
+	 * Get the VATrate of the item.
+	 * 
+	 * @return VATrate
+	 */
 	public Amount getVATrate () {
 		return this.VATrate;
 	}
 	
+	/**
+	 * Get the name of the item.
+	 * 
+	 * @return name
+	 */
 	public String getName () {
 		return this.name;
 	}

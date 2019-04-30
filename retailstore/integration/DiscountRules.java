@@ -1,5 +1,10 @@
 package retailstore.integration;
 
+/**
+ * 
+ * @author User
+ *
+ */
 public class DiscountRules {
 	private Amount discountPercentage = new Amount(0);
 	
@@ -23,6 +28,10 @@ public class DiscountRules {
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public Amount getDiscountPercentage() {
 		return this.discountPercentage;
 	}

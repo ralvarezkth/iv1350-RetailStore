@@ -1,5 +1,8 @@
 package retailstore.integration;
 
+/**
+ * 
+ */
 public class CustomerIDDTO {
 	String name;
 	int ID;
