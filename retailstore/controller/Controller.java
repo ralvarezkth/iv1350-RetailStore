@@ -66,8 +66,8 @@ public class Controller {
 		CashPayment payment = new CashPayment(paidAmount);
 		Amount change = sale.pay(payment);
 		sale.printReceipt(printer);
-		creator.accountingSystemHandler.sendSaleInformation(sale);
-		creator.inventorySystemHandler.sendSaleInformation(sale);
+		creator.getAccountingSystemHandler().sendSaleInformation(sale);
+		creator.getInventorySystemHandler().sendSaleInformation(sale);
 		return change;
 	}
 

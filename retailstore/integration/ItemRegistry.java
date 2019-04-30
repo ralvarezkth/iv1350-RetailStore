@@ -4,25 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * @author User
- *
+ * Contains all calls to the item registry with items that may be purchased.
  */
 public class ItemRegistry {
 	
 	private List<ItemDTO> exampleItemDB = new ArrayList<>();
 	
-	/**
-	 * Creates an instance
-	 */
 	ItemRegistry() {	
 		addItems();
 	}
 	
 	/**
+	 * Finds the item corresponding to the scanned item identifier.
 	 * 
-	 * @param itemIdentifier
-	 * @return
+	 * @param itemIdentifier The item identifier to the scanned item.
+	 * @return The found item that corresponds to the scanned item identifier.
 	 */
 	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) {
 		ItemDTO foundItem = null;
@@ -37,9 +33,7 @@ public class ItemRegistry {
 		return foundItem;
 	}
 	
-	/**
-	 * 
-	 */
+	// adds some itemDTOs to the list exampleItemDB
 	private void addItems() {
 		ItemIdentifierDTO itemIdentifierCorn = new ItemIdentifierDTO("0123456789");
 		ItemIdentifierDTO itemIdentifierBread = new ItemIdentifierDTO("1231231231");
