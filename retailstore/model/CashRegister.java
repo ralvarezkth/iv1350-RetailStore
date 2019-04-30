@@ -12,7 +12,7 @@ public class CashRegister {
 	 * Creates an instance
 	 */
 	public CashRegister (RegistryCreator creator) {
-		this.saleLog = creator.saleLog;
+		this.saleLog = creator.getSaleLog();
 	}
 	
 	/**
