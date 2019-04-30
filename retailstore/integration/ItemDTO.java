@@ -26,32 +26,36 @@ public class ItemDTO {
 	}
 	
 	/**
-	 * Get the ite
-	 * @return
+	 * Get the itemIdentifier of the Item.
+	 * 
+	 * @return itemIdentifier The itemIdentifier of the item.
 	 */
 	public ItemIdentifierDTO getItemIdentifierDTO () {
 		return this.itemIdentifier;
 	}
 	
 	/**
+	 * Get the price of the item including VAT.
 	 * 
-	 * @return
+	 * @return price The price of the item.
 	 */
 	public Amount getPrice () {
 		return this.price;
 	}
 	
 	/**
+	 * Get the VATrate of the item.
 	 * 
-	 * @return
+	 * @return VATrate
 	 */
 	public Amount getVATrate () {
 		return this.VATrate;
 	}
 	
 	/**
+	 * Get the name of the item.
 	 * 
-	 * @return
+	 * @return name
 	 */
 	public String getName () {
 		return this.name;

@@ -105,6 +105,7 @@ public class View {
 		System.out.printf("Total price with discount: " + "%.2f\n", priceAfterDiscountRequestForEllinor.getAmount());
 		}
 		*/
+		
 		Amount paidAmount = new Amount(1000);
 		
 		Amount change = contr.enterPaidAmount(paidAmount);

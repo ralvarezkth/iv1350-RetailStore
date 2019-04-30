@@ -9,7 +9,7 @@ public class ItemIdentifierDTO {
 	/**
 	 * Creates an instance
 	 * 
-	 * @param itemIdentifier The item identifier to be constructed (or "scanned").
+	 * @param itemIdentifier The item identifier to be constructed or scanned.
 	 */
 	public ItemIdentifierDTO(String itemIdentifier) {
 		this.itemIdentifier = itemIdentifier;

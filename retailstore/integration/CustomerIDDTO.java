@@ -1,5 +1,10 @@
 package retailstore.integration;
 
+/**
+ * 
+ * @author User
+ *
+ */
 public class CustomerIDDTO {
 	String name;
 	int ID;

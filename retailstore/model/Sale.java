@@ -8,6 +8,11 @@ import retailstore.integration.DiscountRules;
 import retailstore.integration.Printer;
 import retailstore.model.Receipt;
 
+/**
+ * 
+ * @author User
+ *
+ */
 public class Sale {
 	private String dateOfSale = "2 maj 2019";
 	private String timeOfSale = "12:00";
@@ -53,6 +58,7 @@ public class Sale {
 		this.change = new Amount(payment.getPaidAmount().getAmount() - this.totalPrice.getAmount());
 		return change;
 	}
+	
 	/**
 	 * 
 	 * @param printer
@@ -76,6 +82,7 @@ public class Sale {
 		
 		return this.totalPrice;
 	}
+	
 	/**
 	 * 
 	 */
@@ -83,24 +90,58 @@ public class Sale {
 		this.totalPrice = this.runningTotal;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDateOfSale () {
 		return this.dateOfSale;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTimeOfSale () {
 		return this.timeOfSale;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getSaleID () {
 		return this.saleID;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Amount getTotalPrice () {
 		return this.totalPrice;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Amount getTotalVAT () {
 		return this.totalVAT;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Amount getChange () {
 		return this.change;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Amount getPaidAmount () {
 		return this.paidAmount;
 	}

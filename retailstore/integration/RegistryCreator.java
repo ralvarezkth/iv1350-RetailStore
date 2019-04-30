@@ -11,40 +11,45 @@ public class RegistryCreator {
 	private DiscountRules discountRules = new DiscountRules();
 
 	/**
+	 * Get the accountingSystemHandler.
 	 * 
-	 * @return
+	 * @return accountingSystemHandler
 	 */
 	public AccountingSystemHandler getAccountingSystemHandler() {
 		return this.accountingSystemHandler;
 	}
 	
 	/**
+	 * Get the inventorySystemHandler.
 	 * 
-	 * @return
+	 * @return inventorySystemHandler
 	 */
 	public InventorySystemHandler getInventorySystemHandler() {
 		return this.inventorySystemHandler;
 	}
 
 	/**
+	 * Get the itemRegistry.
 	 * 
-	 * @return
+	 * @return itemRegistry
 	 */
 	public ItemRegistry getItemRegistry() {
 		return this.itemRegistry;
 	}
 
 	/**
+	 * Get the saleLog.
 	 * 
-	 * @return
+	 * @return saleLog
 	 */
 	public SaleLog getSaleLog() {
 		return this.saleLog;
 	}
 
 	/**
+	 * Get the discountRules.
 	 * 
-	 * @return
+	 * @return discountRules
 	 */
 	public DiscountRules discountRules() {
 		return this.discountRules;

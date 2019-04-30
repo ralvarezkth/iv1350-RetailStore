@@ -1,5 +1,10 @@
 package retailstore.integration;
 
+/**
+ * 
+ * @author User
+ *
+ */
 public class Amount {
 	private double amount;
 
@@ -9,6 +14,11 @@ public class Amount {
 	public Amount (double amount) {
 			this.amount = amount;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public double getAmount() {
 		return this.amount;
 	}

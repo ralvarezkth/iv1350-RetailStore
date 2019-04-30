@@ -2,6 +2,9 @@ package retailstore.model;
 
 import retailstore.integration.Amount;
 
+/**
+ * The receipt of a sale.
+ */
 public class Receipt {
 	private String dateOfSale;
 	private String timeOfSale;
@@ -13,7 +16,8 @@ public class Receipt {
 
 	/**
 	 * Creates a new instance.
-	 * @param sale
+	 * 
+	 * @param sale The sale proved by this receipt.
 	 */
 	Receipt (Sale sale){
 		this.dateOfSale = sale.getDateOfSale();
@@ -24,6 +28,4 @@ public class Receipt {
 		this.change 	= sale.getChange();
 		this.paidAmount = sale.getPaidAmount();
 	}
-	
-
 }
