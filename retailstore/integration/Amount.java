@@ -1,23 +1,25 @@
 package retailstore.integration;
 
 /**
- * 
- * @author User
+ * Represents an amount of money or a discount percentage.
  *
  */
 public class Amount {
 	private double amount;
 
 	/**
-	 * Creates a new instance
+	 * Creates a new instance.
+	 * 
+	 * @param amount The amount of money or percentage units.
 	 */
 	public Amount (double amount) {
 			this.amount = amount;
 	}
 	
 	/**
+	 * Gets the amount value of the instance.
 	 * 
-	 * @return
+	 * @return The amount value.
 	 */
 	public double getAmount() {
 		return this.amount;

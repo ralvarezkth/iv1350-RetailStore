@@ -8,7 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import retailstore.integration.Amount;
-
+/**
+ * Tests for the Sale class.
+ *
+ */
 class SaleTest {
 	protected Amount firstAmount;
 	protected Amount secondAmount;

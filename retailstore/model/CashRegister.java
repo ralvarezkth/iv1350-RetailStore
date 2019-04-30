@@ -6,13 +6,15 @@ import retailstore.integration.SaleLog;
 import retailstore.integration.Amount;
 
 /**
- * 
+ * This class handles calculations for the current sale and adds payment to the sale log. 
  */
 public class CashRegister {
 	private SaleLog saleLog;
 
 	/**
-	 * Creates an instance.
+	 * Creates a new instance.
+	 * 
+	 * @param creator Used to get all classes that handle database calls.
 	 */
 	public CashRegister (RegistryCreator creator) {
 		this.saleLog = creator.getSaleLog();

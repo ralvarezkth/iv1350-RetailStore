@@ -17,7 +17,7 @@ public class ItemRegistry {
 	/**
 	 * Finds the item corresponding to the scanned item identifier.
 	 * 
-	 * @param itemIdentifier The item identifier to the scanned item.
+	 * @param itemIdentifier The item identifier of the scanned item.
 	 * @return foundItem The found item that corresponds to the scanned item identifier.
 	 */
 	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) {
@@ -33,7 +33,6 @@ public class ItemRegistry {
 		return foundItem;
 	}
 	
-	// adds some itemDTOs to the list exampleItemDB
 	private void addItems() {
 		ItemIdentifierDTO itemIdentifierCorn = new ItemIdentifierDTO("0123456789");
 		ItemIdentifierDTO itemIdentifierBread = new ItemIdentifierDTO("1231231231");

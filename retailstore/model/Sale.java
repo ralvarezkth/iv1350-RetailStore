@@ -1,8 +1,10 @@
 package retailstore.model;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemDTO;
+import retailstore.integration.ListItem;
 import retailstore.model.CashRegister;
 import retailstore.integration.DiscountRules;
 import retailstore.integration.Printer;
@@ -18,16 +20,18 @@ public class Sale {
 	private String saleID = "123";
 	private Amount totalPrice = new Amount(0);
 	private Amount totalVAT;
-			Amount runningTotal = new Amount(0);
+	Amount runningTotal = new Amount(0);
 	private Amount change;
 	private Amount paidAmount;
 	private CashPayment cashPayment;
-	private List<ItemDTO> listOfItems = new ArrayList<>();
+	private List<ListItem> listOfItems = new ArrayList<ListItem>();
 	private CashRegister cashRegister;
-	
+
 
 	/**
-	 * Creates a new instance
+	 * Creates a new instance.
+	 * 
+	 * @param cashRegister The cash register that performs calculations for the sale.
 	 */
 	public Sale (CashRegister cashRegister) {
 		this.cashRegister = cashRegister;
@@ -35,35 +39,46 @@ public class Sale {
 	}
 
 	/**
-	 * 
+	 * Adds items to the list of items to be sold in the current sale.
 	 *
 	 * @param foundItem The found item that corresponds to the scanned item identifier.
-	 * @param quantity The quantity of of the scanned item.
-	 * @return saleDTO 	containing the itemDTO for the scanned item 
+	 * @param quantity The quantity of the scanned item.
+	 * @return saleDTO 	Contains the itemDTO for the scanned item 
 	 * 					and the running total of the sale.
 	 */
 	public SaleDTO addItem (ItemDTO foundItem, int quantity) {
-		listOfItems.add(foundItem);
+		ListItem listItem = new ListItem(foundItem, quantity);
+		for(int i = 0; i < listOfItems.size(); i++) {
+			if(foundItem.equals(listOfItems.get(i).getItemDTO())) {
+				listItem.addQuantity(quantity);
+				listOfItems.set(i, listItem);
+			}
+			else {
+				listOfItems.add(listItem);
+			}
+		}
 		cashRegister.calculateRunningTotal (this, foundItem, quantity);
 		SaleDTO saleDTO = new SaleDTO(foundItem, runningTotal);
 
 		return saleDTO;
+
 	}
 
 	/**
-	 *
+	 * Takes payment from the customer and calculates the change.
+	 * 
 	 * @param payment The amount paid by the customer.
-	 * @return change 	The change based on the totalPrice of the 
-	 * 					sale and the amountPaid by the customer.
+	 * @return change The amount of change to give to the customer. 
 	 */
 	public Amount pay(CashPayment payment) {
 		this.change = new Amount(payment.getPaidAmount().getAmount() - this.totalPrice.getAmount());
 		return change;
 	}
-	
+
 	/**
+	 * Signals the external printer to print a receipt.
 	 * 
-	 * @param printer
+	 * @param printer Interface to printer.
 	 */
 	public void printReceipt(Printer printer) {
 		Receipt receipt = new Receipt(this);
@@ -72,89 +87,87 @@ public class Sale {
 	}
 
 	/**
-	 * Calculates the price of the sale for a customer
-	 * after checking the discount rules.
+	 * Calculates a discounted price.
 	 *
-	 * @param discountRules 
-	 * @return totalPrice 	The totalPrice after checking if the
-	 * 						customer is eligible for discount.
+	 * @param discountRules The rules that define the discount.
+	 * @return totalPrice The totalPrice after checking if the
+	 * 						customer is eligible for a discount.
 	 */
 	public Amount calculatePriceAfterDiscount(DiscountRules discountRules) {
 		double priceAfterDiscount = this.totalPrice.getAmount() 
 				* (1 - discountRules.getDiscountPercentage().getAmount());
-		
+
 		this.totalPrice = new Amount(priceAfterDiscount);
-		
+
 		return this.totalPrice;
 	}
-	
+
 	/**
-	 * Updates the totalPrice of the sale to the runningTotal
+	 * Updates the totalPrice to match the runningTotal
 	 * when the sale is signaled as finished.
 	 */
 	public void updateTotalPrice() {
 		this.totalPrice = this.runningTotal;
 	}
-	
+
 	/**
-	 * Get the dateOfSale.
+	 * Gets the dateOfSale.
 	 * 
-	 * @return dateOfSale The date of when the sale was completed.
+	 * @return dateOfSale The date when the sale was completed.
 	 */
 	public String getDateOfSale () {
 		return this.dateOfSale;
 	}
-	
+
 	/**
-	 * Get the timeOfSale.
+	 * Gets the timeOfSale.
 	 * 
-	 * @return timeOfSale The time of when the sale was completed.
+	 * @return timeOfSale The time when the sale was completed.
 	 */
 	public String getTimeOfSale () {
 		return this.timeOfSale;
 	}
-	
+
 	/**
-	 * Get the saleID of the sale.
+	 * Gets the saleID of the sale.
 	 * 
 	 * @return saleID The saleID of the sale.
 	 */
 	public String getSaleID () {
 		return this.saleID;
 	}
-	
+
 	/**
-	 * Get the totalPrice of the sale.
+	 * Gets the totalPrice of the sale.
 	 * 
 	 * @return totalPrice The totalPrice of the sale.
 	 */
 	public Amount getTotalPrice () {
 		return this.totalPrice;
 	}
-	
+
 	/**
-	 * Get the totalVAT of the sale.
+	 * Gets the totalVAT of the sale.
 	 * 
 	 * @return totalVAT The total VAT of the sale.
 	 */
 	public Amount getTotalVAT () {
 		return this.totalVAT;
 	}
-	
+
 	/**
-	 * Get the change after payment.
+	 * Gets the change after payment.
 	 * 
-	 * @return change 	The change based on the totalPrice of the 
-	 * 					sale and the amountPaid by the customer.
+	 * @return change The amount of change to give to the customer. 
 	 */
 	public Amount getChange () {
 		return this.change;
 	}
-	
+
 	/**
-	 * Get the paidAmount that the customer handed over.
+	 * Gets the paid amount by the customer.
 	 * 
-	 * @return paidAmount The amount the customer handed over.
+	 * @return paidAmount The amount paid by the customer.
 	 */
 	public Amount getPaidAmount () {
 		return this.paidAmount;

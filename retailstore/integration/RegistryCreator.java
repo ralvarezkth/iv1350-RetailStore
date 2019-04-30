@@ -1,7 +1,7 @@
 package retailstore.integration;
 
 /**
- * This class is responsible for instantiating all handles and registers.
+ * This class is responsible for instantiating all handlers and registers.
  */
 public class RegistryCreator {	
 	private AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
@@ -11,45 +11,45 @@ public class RegistryCreator {
 	private DiscountRules discountRules = new DiscountRules();
 
 	/**
-	 * Get the accountingSystemHandler.
+	 * Gets the accountingSystemHandler.
 	 * 
-	 * @return accountingSystemHandler
+	 * @return The accountingSystemHandler.
 	 */
 	public AccountingSystemHandler getAccountingSystemHandler() {
 		return this.accountingSystemHandler;
 	}
 	
 	/**
-	 * Get the inventorySystemHandler.
+	 * Gets the inventorySystemHandler.
 	 * 
-	 * @return inventorySystemHandler
+	 * @return The inventorySystemHandler
 	 */
 	public InventorySystemHandler getInventorySystemHandler() {
 		return this.inventorySystemHandler;
 	}
 
 	/**
-	 * Get the itemRegistry.
+	 * Gets the itemRegistry.
 	 * 
-	 * @return itemRegistry
+	 * @return The itemRegistry
 	 */
 	public ItemRegistry getItemRegistry() {
 		return this.itemRegistry;
 	}
 
 	/**
-	 * Get the saleLog.
+	 * Gets the saleLog.
 	 * 
-	 * @return saleLog
+	 * @return The saleLog
 	 */
 	public SaleLog getSaleLog() {
 		return this.saleLog;
 	}
 
 	/**
-	 * Get the discountRules.
+	 * Gets the discountRules.
 	 * 
-	 * @return discountRules
+	 * @return The discountRules
 	 */
 	public DiscountRules getDiscountRules() {
 		return this.discountRules;

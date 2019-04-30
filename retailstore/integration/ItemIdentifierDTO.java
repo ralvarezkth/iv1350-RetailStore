@@ -7,7 +7,7 @@ public class ItemIdentifierDTO {
 	private String itemIdentifier;
 	
 	/**
-	 * Creates an instance
+	 * Creates a new instance.
 	 * 
 	 * @param itemIdentifier The item identifier to be constructed or scanned.
 	 */
@@ -16,9 +16,9 @@ public class ItemIdentifierDTO {
 	}
 	
 	/**
-	 * Get the itemIdentifierDTO.
+	 * Gets the itemIdentifierDTO.
 	 * 
-	 * @return the itemIdentifier.
+	 * @return The itemIdentifier.
 	 */
 	public String getItemIdentifier() {
 		return this.itemIdentifier;

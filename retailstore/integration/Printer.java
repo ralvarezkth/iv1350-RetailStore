@@ -3,19 +3,19 @@ package retailstore.integration;
 import retailstore.model.Receipt;
 
 /**
- * Handles calls to the external system, printer. 
+ * This class is a placeholder for all calls to the external printer. 
  */
 public class Printer {
 	
 	/**
-	 * Creates an instance 
+	 * Creates an instance. 
 	 */
 	public Printer() {
 		
 	}
 	
 	/**
-	 * Calls the external system, printer, to print the specified receipt. 
+	 * Calls the external printer to print the specified receipt. 
 	 * 
 	 * @param receipt The receipt for the current sale.
 	 */

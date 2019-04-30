@@ -3,7 +3,7 @@ package retailstore.integration;
 import retailstore.model.Sale;
 
 /**
- * Contains all calls to the sale log where every sale of the store is logged.
+ * This class is a placeholder for all calls to the sale log.
  */
 public class SaleLog {
 	

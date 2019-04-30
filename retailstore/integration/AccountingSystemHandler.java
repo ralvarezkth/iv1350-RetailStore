@@ -3,22 +3,20 @@ package retailstore.integration;
 import retailstore.model.Sale;
 
 /**
- * Contains all calls to the external accounting sSystem.
+ * This class is a placeholder for all calls to the external accounting system.
+ * 
  */
 public class AccountingSystemHandler {
 	
-	/**
-	 * Creates an instance
-	 */
 	AccountingSystemHandler() {
 		
 	}
 	
 	/**
-	 * Sends information about the specified sale to
+	 * Sends information about the current sale to
 	 * the external accounting system.
 	 * 
-	 * @param sale The specified sale.
+	 * @param sale The current sale.
 	 */
 	public void sendSaleInformation (Sale sale) {
 		System.out.println("Sending sale information to accounting system...");

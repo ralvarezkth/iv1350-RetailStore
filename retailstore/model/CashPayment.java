@@ -3,8 +3,7 @@ package retailstore.model;
 import retailstore.integration.Amount;
 
 /**
- * 
- * @author User
+ * Represents a customers payment in cash.
  *
  */
 public class CashPayment {
@@ -12,19 +11,19 @@ public class CashPayment {
 	
 	/**
 	 * Creates a new instance.
-	 * @param paidAmount
+	 * 
+	 * @param paidAmount The amount paid by the customer.
 	 */
 	public CashPayment (Amount paidAmount) {
 		this.paidAmount = paidAmount;
 	}
 	
 	/**
+	 * Gets the paid amount.
 	 * 
-	 * @return
+	 * @return The paid amount.
 	 */
 	public Amount getPaidAmount() {
 		return this.paidAmount;
 	}
-	
-
 }

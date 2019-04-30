@@ -3,7 +3,7 @@ package retailstore.model;
 import retailstore.integration.Amount;
 
 /**
- * The receipt of a sale.
+ * Represents the receipt of a sale.
  */
 public class Receipt {
 	private String dateOfSale;

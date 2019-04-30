@@ -1,25 +1,22 @@
 package retailstore.integration;
 
 /**
- * 
- * @author User
+ * Contains the rules that define a customer to be eligible 
+ * for a discount.
  *
  */
 public class DiscountRules {
 	private Amount discountPercentage = new Amount(0);
 	
-	/**
-	 * Creates an instance
-	 */
 	DiscountRules() {
 		
 	}
 	
 	/**
+	 * Checks if the customer meets the requirements for a discount.
 	 * 
-	 * @param customerID
-	 * @param sale
-	 * @return
+	 * @param customerID The ID of the customer.
+	 * @return This instance of the class.
 	 */
 	public DiscountRules checkRules(CustomerIDDTO customerID) {
 		if (customerID.ID >= 555555) {
@@ -29,8 +26,9 @@ public class DiscountRules {
 	}
 	
 	/**
+	 * Gets the discount percentage for the customer.
 	 * 
-	 * @return
+	 * @return The discount percentage.
 	 */
 	public Amount getDiscountPercentage() {
 		return this.discountPercentage;
