@@ -26,6 +26,9 @@ public class View {
 	 */
 	public void sampleExecution() {
 		contr.startNewSale();
+		System.out.println("New sale started.");
+		System.out.println("Ready to scan items.");
+		System.out.println();
 		
 		ItemIdentifierDTO firstValidItemIdentifier = new ItemIdentifierDTO("0123456789");
 		ItemIdentifierDTO secondValidItemIdentifier = new ItemIdentifierDTO("1231231231");
@@ -44,6 +47,8 @@ public class View {
 		}
 		System.out.println();
 		System.out.println();
+		System.out.println("Ready to scan items.");
+		System.out.println();
 		
 		currentSaleDTO = contr.enterIdentifier(secondValidItemIdentifier, 4);
 		if (currentSaleDTO == null) {
@@ -57,6 +62,8 @@ public class View {
 			System.out.printf("Running total (including VAT): " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
 		}
 		System.out.println();
+		System.out.println();
+		System.out.println("Ready to scan items.");
 		System.out.println();
 		
 		currentSaleDTO = contr.enterIdentifier(invalidItemIdentifier, 1);
@@ -72,9 +79,12 @@ public class View {
 			System.out.printf("Running total: " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
 		}
 		System.out.println();
+		System.out.println("Ready to scan items.");
 		System.out.println();
 		
 		Amount totalPrice = contr.signalFinished();
+		System.out.println("Scanning finished.");
+		System.out.println();
 		System.out.printf("Total price: " + "%.2f\n", totalPrice.getAmount());
 		
 		CustomerIDDTO exampleCustomerWithDiscount = new CustomerIDDTO("Aria", 999999); 
