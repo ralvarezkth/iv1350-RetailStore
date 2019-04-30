@@ -75,7 +75,7 @@ public class Sale {
 	 * Calculates the price of the sale for a customer
 	 * after checking the discount rules.
 	 *
-	 * @param discountRules 
+	 * @param discountRules  
 	 * @return totalPrice 	The totalPrice after checking if the
 	 * 						customer is eligible for discount.
 	 */
