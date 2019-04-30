@@ -87,8 +87,7 @@ public class View {
 		System.out.println();
 		System.out.printf("Total price: " + "%.2f\n", totalPrice.getAmount());
 		
-		CustomerIDDTO exampleCustomerWithDiscount = new CustomerIDDTO("Aria", 999999); 
-		CustomerIDDTO exampleCustomerWithoutDiscount = new CustomerIDDTO("Ellinor", 000000);
+		CustomerIDDTO exampleCustomerWithDiscount = new CustomerIDDTO("Ellinor", 999999); 
 		
 		Amount priceAfterDiscountRequestForAria = contr.discountRequest(exampleCustomerWithDiscount);
 		if (priceAfterDiscountRequestForAria.getAmount() == totalPrice.getAmount()) {
@@ -98,13 +97,6 @@ public class View {
 		}
 		System.out.println();
 		
-		/*Amount priceAfterDiscountRequestForEllinor = contr.discountRequest(exampleCustomerWithoutDiscount);
-		if (priceAfterDiscountRequestForEllinor.getAmount() == totalPrice.getAmount()) {
-			System.out.println("Not eligible for a discount.");		}
-		else {
-		System.out.printf("Total price with discount: " + "%.2f\n", priceAfterDiscountRequestForEllinor.getAmount());
-		}
-		*/
 		Amount paidAmount = new Amount(1000);
 		
 		Amount change = contr.enterPaidAmount(paidAmount);
