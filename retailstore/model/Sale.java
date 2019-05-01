@@ -62,7 +62,6 @@ public class Sale {
 					itemWithIncreasedQuantity.addQuantity(quantity);
 					listOfItems.set(i, itemWithIncreasedQuantity);
 
-					
 					return new SaleDTO(foundItem, itemWithIncreasedQuantity.getQuantity(), runningTotal);
 				}
 			}
