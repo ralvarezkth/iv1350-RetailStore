@@ -1,6 +1,5 @@
 package retailstore.model;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemDTO;
@@ -9,6 +8,7 @@ import retailstore.model.CashRegister;
 import retailstore.integration.DiscountRules;
 import retailstore.integration.Printer;
 import retailstore.model.Receipt;
+import retailstore.model.SaleDTO;
 
 /**
  * Represents a particular sale, where a particular
