@@ -113,9 +113,7 @@ public class Controller {
 	public Amount discountRequest(CustomerIDDTO customerID) {
 		DiscountRules discountRules = creator.getDiscountRules().checkRules(customerID);
 		Amount priceAfterDiscount = sale.calculatePriceAfterDiscount(discountRules);
-		System.out.println();
-		System.out.println("Signaling discount request...");
-		System.out.println();
+		
 		return priceAfterDiscount;
 	}
 
