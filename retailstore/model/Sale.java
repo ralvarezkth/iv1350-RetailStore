@@ -24,7 +24,7 @@ public class Sale {
 	private Amount change;
 	private Amount paidAmount;
 	private CashPayment cashPayment;
-	private List<ListItem> listOfItems = new ArrayList<ListItem>();
+	private List<ListItem> listOfItems = new ArrayList<>();
 	private CashRegister cashRegister;
 
 
@@ -43,24 +43,33 @@ public class Sale {
 	 *
 	 * @param foundItem The found item that corresponds to the scanned item identifier.
 	 * @param quantity The quantity of the scanned item.
-	 * @return saleDTO 	Contains the itemDTO for the scanned item
+	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity
 	 * 					and the running total of the sale.
 	 */
 	public SaleDTO addItem (ItemDTO foundItem, int quantity) {
 		ListItem listItem = new ListItem(foundItem, quantity);
-		for(int i = 0; i < listOfItems.size(); i++) {
-			if(foundItem.equals(listOfItems.get(i).getItemDTO())) {
-				listItem.addQuantity(quantity);
-				listOfItems.set(i, listItem);
-			}
-			else {
-				listOfItems.add(listItem);
-			}
-		}
 		cashRegister.calculateRunningTotal (this, foundItem, quantity);
-		SaleDTO saleDTO = new SaleDTO(foundItem, runningTotal);
+		
+		if (listOfItems.size() == 0) {
+			listOfItems.add(listItem);
+		}
+		
+		else {
+			for(int i = 0; i < listOfItems.size(); i++) {
+				if(foundItem.equals(listOfItems.get(i).getItemDTO())) {
 
-		return saleDTO;
+					ListItem itemWithIncreasedQuantity = listOfItems.get(i);
+					itemWithIncreasedQuantity.addQuantity(quantity);
+					listOfItems.set(i, itemWithIncreasedQuantity);
+
+					
+					return new SaleDTO(foundItem, itemWithIncreasedQuantity.getQuantity(), runningTotal);
+				}
+			}
+			listOfItems.add(listItem);
+		}
+
+		return new SaleDTO(foundItem, quantity, runningTotal);
 
 	}
 

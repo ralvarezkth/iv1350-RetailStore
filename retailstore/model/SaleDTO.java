@@ -4,21 +4,24 @@ import retailstore.integration.Amount;
 import retailstore.integration.ItemDTO;
 
 /**
- * Contains the currently scanned item and the runningTotal of the sale.
+ * Contains the currently scanned item, its quantity and the runningTotal of the sale.
  */
 public class SaleDTO {
 	private ItemDTO foundItem;
+	private int quantity;
 	private Amount runningTotal;
 
 	/**
 	 * Creates a new instance.
 	 * 
 	 * @param foundItem The found item that corresponds to the scanned item identifier.
+	 * @param quantity The quantity of the found item.
 	 * @param runningTotal The running total of the sale.
 	 */
-	SaleDTO (ItemDTO foundItem, Amount runningTotal) {
+	SaleDTO (ItemDTO foundItem, int quantity, Amount runningTotal) {
 		this.foundItem = foundItem;
 		this.runningTotal = runningTotal;
+		this.quantity = quantity;
 	}
 	
 	/**
@@ -28,6 +31,15 @@ public class SaleDTO {
 	 */
 	public ItemDTO getFoundItem() {
 		return this.foundItem;
+	}
+	
+	/**
+	 * Gets the quantity of the found item.
+	 * 
+	 * @return The quantity of the found item.
+	 */
+	public int getQuantity() {
+		return this.quantity;
 	}
 	
 	/**

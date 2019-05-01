@@ -45,20 +45,14 @@ public class Controller {
 	 * Retrieves an item matching the identifier in the argument.
 	 *
 	 * @param itemIdentifier The itemIdentifier of the scanned item. 
-	 * @return saleDTO 	Contains the itemDTO for the scanned item 
+	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity 
 	 * 					and the running total of the sale.
 	 */
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier) {
 		int quantity = 1;
-
-		ItemDTO foundItem = creator.getItemRegistry().findItem(itemIdentifier);
-
-		if (foundItem == null)
-			return null;
-
-		SaleDTO saleDTO = sale.addItem(foundItem, quantity);
-
-		return saleDTO;
+		
+		return enterIdentifier(itemIdentifier, quantity);
+	
 	}
 
 	/**
@@ -66,7 +60,7 @@ public class Controller {
 	 *
 	 * @param itemIdentifier The itemIdentifier of the scanned item. 
 	 * @param quantity The quantity of the scanned item.
-	 * @return saleDTO 	Contains the itemDTO for the scanned item 
+	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity 
 	 * 					and the running total of the sale.
 	 */
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) {

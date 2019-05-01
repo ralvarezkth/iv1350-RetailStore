@@ -36,7 +36,19 @@ public class View {
 
 		SaleDTO currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier);
 		if (currentSaleDTO != null) {
-			System.out.println("Item name: " + currentSaleDTO.getFoundItem().getName());
+			System.out.printf("Item name: " + currentSaleDTO.getFoundItem().getName() + " (x" + "%d" + ")\n", currentSaleDTO.getQuantity());
+			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
+			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
+			System.out.println();
+			System.out.printf("Running total (including VAT): " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
+		}
+		System.out.println();
+		System.out.println("Ready to scan items.");
+		System.out.println();
+		
+		currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier, 2);
+		if (currentSaleDTO != null) {
+			System.out.printf("Item name: " + currentSaleDTO.getFoundItem().getName() + " (x" + "%d" + ")\n", currentSaleDTO.getQuantity());
 			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
 			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
 			System.out.println();
@@ -48,7 +60,7 @@ public class View {
 
 		currentSaleDTO = contr.enterIdentifier(secondValidItemIdentifier, 4);
 		if (currentSaleDTO != null) {
-			System.out.println("Item name: " + currentSaleDTO.getFoundItem().getName());
+			System.out.printf("Item name: " + currentSaleDTO.getFoundItem().getName() + " (x" + "%d" + ")\n", currentSaleDTO.getQuantity());
 			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
 			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
 			System.out.println();
@@ -58,7 +70,7 @@ public class View {
 		System.out.println("Ready to scan items.");
 		System.out.println();
 
-		currentSaleDTO = contr.enterIdentifier(invalidItemIdentifier, 1);
+		currentSaleDTO = contr.enterIdentifier(invalidItemIdentifier);
 		if (currentSaleDTO != null) {
 			System.out.println("Item name: " + currentSaleDTO.getFoundItem().getName());
 			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
