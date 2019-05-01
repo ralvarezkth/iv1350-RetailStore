@@ -1,4 +1,4 @@
- package retailstore.startup;
+package retailstore.startup;
 
 import retailstore.view.View;
 import retailstore.controller.Controller;

@@ -25,6 +25,39 @@ public class SaleDTO {
 	}
 	
 	/**
+	 * Creates a well-formatted string with the entire content of the saleDTO.
+	 */
+	public String createSaleDToString() {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("Item name: ");
+		builder.append(getFoundItem().getName());
+		builder.append(" (x");
+		builder.append(getQuantity());
+		builder.append(")");
+		endSection(builder);
+		
+		builder.append("Item price: ");
+		builder.append(getFoundItem().getPrice().getAmount());
+		endSection(builder);
+		
+		builder.append("Item VAT rate: ");
+		builder.append(getFoundItem().getVATrate().getAmount());
+		builder.append("%");
+		endSection(builder); 
+		endSection(builder);
+		
+		builder.append("Running total (including VAT): ");
+		builder.append(getRunningTotal().getAmount());
+		
+		return builder.toString();	
+	}
+	
+	private void endSection(StringBuilder builder) {
+		builder.append("\n");
+	}
+	
+	/**
 	 * Gets the foundItem.
 	 * 
 	 * @return founfItem The found item.

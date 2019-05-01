@@ -36,11 +36,7 @@ public class View {
 
 		SaleDTO currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier);
 		if (currentSaleDTO != null) {
-			System.out.printf("Item name: " + currentSaleDTO.getFoundItem().getName() + " (x" + "%d" + ")\n", currentSaleDTO.getQuantity());
-			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
-			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
-			System.out.println();
-			System.out.printf("Running total (including VAT): " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
+			System.out.println(currentSaleDTO.createSaleDToString());
 		}
 		System.out.println();
 		System.out.println("Ready to scan items.");
@@ -48,11 +44,7 @@ public class View {
 		
 		currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier, 2);
 		if (currentSaleDTO != null) {
-			System.out.printf("Item name: " + currentSaleDTO.getFoundItem().getName() + " (x" + "%d" + ")\n", currentSaleDTO.getQuantity());
-			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
-			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
-			System.out.println();
-			System.out.printf("Running total (including VAT): " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
+			System.out.println(currentSaleDTO.createSaleDToString());
 		}
 		System.out.println();
 		System.out.println("Ready to scan items.");
@@ -60,11 +52,7 @@ public class View {
 
 		currentSaleDTO = contr.enterIdentifier(secondValidItemIdentifier, 4);
 		if (currentSaleDTO != null) {
-			System.out.printf("Item name: " + currentSaleDTO.getFoundItem().getName() + " (x" + "%d" + ")\n", currentSaleDTO.getQuantity());
-			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
-			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
-			System.out.println();
-			System.out.printf("Running total (including VAT): " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
+			System.out.println(currentSaleDTO.createSaleDToString());
 		}
 		System.out.println();
 		System.out.println("Ready to scan items.");
@@ -72,11 +60,7 @@ public class View {
 
 		currentSaleDTO = contr.enterIdentifier(invalidItemIdentifier);
 		if (currentSaleDTO != null) {
-			System.out.println("Item name: " + currentSaleDTO.getFoundItem().getName());
-			System.out.printf("Item price: " + "%.2f\n", currentSaleDTO.getFoundItem().getPrice().getAmount());
-			System.out.printf("Item VAT rate: " + "%.0f" + "%%\n", currentSaleDTO.getFoundItem().getVATrate().getAmount());
-			System.out.println();
-			System.out.printf("Running total: " + "%.2f\n", currentSaleDTO.getRunningTotal().getAmount());
+			System.out.println(currentSaleDTO.createSaleDToString());
 		}
 		
 		System.out.println();
