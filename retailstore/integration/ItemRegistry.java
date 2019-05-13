@@ -20,7 +20,7 @@ public class ItemRegistry {
 	 * @param itemIdentifier The item identifier of the scanned item.
 	 * @return foundItem The found item that corresponds to the scanned item identifier.
 	 */
-	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) {
+	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) throws InvalidIdentifierException {
 		ItemDTO foundItem = null;
 		
 		for(int i = 0; i < exampleItemDB.size(); i++) {

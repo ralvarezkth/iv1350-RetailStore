@@ -11,7 +11,7 @@ import retailstore.integration.Amount;
 import retailstore.integration.CustomerIDDTO;
 import retailstore.integration.ItemIdentifierDTO;
 import retailstore.integration.Printer;
-
+import retailstore.integration.InvalidIdentifierException;
 /**
  * This is the only controller class of the application.
  * All calls to the model passes through this class.
@@ -48,7 +48,7 @@ public class Controller {
 	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity 
 	 * 					and the running total of the sale.
 	 */
-	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier) {
+	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier){
 		int quantity = 1;
 		
 		return enterIdentifier(itemIdentifier, quantity);
@@ -63,9 +63,14 @@ public class Controller {
 	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity 
 	 * 					and the running total of the sale.
 	 */
-	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) {
+	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) throws InvalidIdentifierException {
 
-		ItemDTO foundItem = creator.getItemRegistry().findItem(itemIdentifier);
+		try {
+			ItemDTO foundItem = creator.getItemRegistry().findItem(itemIdentifier);
+		}
+		catch (InvalidIdentifierException exc) {
+			
+		}
 
 		if (foundItem == null) {
 			System.out.println("No item was found.");
