@@ -48,7 +48,7 @@ public class Controller {
 	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity 
 	 * 					and the running total of the sale.
 	 */
-	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier){
+	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier) throws InvalidIdentifierException {
 		int quantity = 1;
 		
 		return enterIdentifier(itemIdentifier, quantity);
@@ -65,19 +65,16 @@ public class Controller {
 	 */
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) throws InvalidIdentifierException {
 
+		ItemDTO foundItem;
 		try {
-			ItemDTO foundItem = creator.getItemRegistry().findItem(itemIdentifier);
+			foundItem = creator.getItemRegistry().findItem(itemIdentifier);
+			
+			
 		}
 		catch (InvalidIdentifierException exc) {
 			
 		}
-
-		if (foundItem == null) {
-			System.out.println("No item was found.");
-		return null;
-		}
 		SaleDTO saleDTO = sale.addItem(foundItem, quantity);
-
 		return saleDTO;
 	}
 
