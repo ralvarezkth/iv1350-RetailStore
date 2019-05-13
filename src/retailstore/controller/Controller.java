@@ -65,16 +65,9 @@ public class Controller {
 	 */
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) throws InvalidIdentifierException {
 
-		ItemDTO foundItem;
-		try {
-			foundItem = creator.getItemRegistry().findItem(itemIdentifier);
-			
-			
-		}
-		catch (InvalidIdentifierException exc) {
-			
-		}
+		ItemDTO foundItem = creator.getItemRegistry().findItem(itemIdentifier);
 		SaleDTO saleDTO = sale.addItem(foundItem, quantity);
+		
 		return saleDTO;
 	}
 
