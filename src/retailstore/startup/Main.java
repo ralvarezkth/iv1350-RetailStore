@@ -3,6 +3,7 @@ package retailstore.startup;
 import retailstore.view.View;
 import retailstore.controller.Controller;
 import retailstore.integration.RegistryCreator;
+import retailstore.integration.InvalidIdentifierException;
 import retailstore.integration.Printer;
 
 /**
@@ -15,8 +16,9 @@ public class Main {
 	 * Starts the application.
 	 * 
 	 * @param args The application does not take any command line parameters.
+	 * @throws InvalidIdentifierException 
 	 */
-	public static void main (String args[]) {
+	public static void main (String args[]) throws InvalidIdentifierException {
 		RegistryCreator creator = new RegistryCreator();
 		Printer printer = new Printer();
 		Controller contr = new Controller(creator, printer);

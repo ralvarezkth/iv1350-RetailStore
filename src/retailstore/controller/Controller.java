@@ -65,7 +65,7 @@ public class Controller {
 	 */
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) throws InvalidIdentifierException {
 
-		ItemDTO foundItem;
+		ItemDTO foundItem = null;
 		try {
 			foundItem = creator.getItemRegistry().findItem(itemIdentifier);
 			

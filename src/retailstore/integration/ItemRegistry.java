@@ -21,16 +21,14 @@ public class ItemRegistry {
 	 * @return foundItem The found item that corresponds to the scanned item identifier.
 	 */
 	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) throws InvalidIdentifierException {
-		ItemDTO foundItem = null;
 		
 		for(int i = 0; i < exampleItemDB.size(); i++) {
 			if(itemIdentifier.getItemIdentifier().equals(exampleItemDB.get(i).getItemIdentifierDTO().getItemIdentifier())) {
-				foundItem = exampleItemDB.get(i);
-				break;
+				return exampleItemDB.get(i);
 			}
 		}
 		
-		return foundItem;
+		throw new InvalidIdentifierException("Item with identifier " + itemIdentifier + " was not found.");
 	}
 	
 	private void addItems() {

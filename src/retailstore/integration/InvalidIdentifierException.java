@@ -5,18 +5,20 @@ import java.lang.Exception;
  */
 public class InvalidIdentifierException extends Exception {
 	
-	private ItemDTO itemWithInvalidIdentifier;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Creates a new instance with a message specifying the invalid identifier.
 	 *  
 	 * @param itemWithInvalidIdentifier The item whose item identifier does not exist.
 	 */
-	public InvalidIdentifierException (ItemDTO itemWithInvalidIdentifier) {
+	public InvalidIdentifierException (String errorMsg) {
 		
-		super("The item identifier " + itemWithInvalidIdentifier.getItemIdentifierDTO() +
-				"does not exist.");
+		super(errorMsg);
 		
-		this.itemWithInvalidIdentifier = itemWithInvalidIdentifier;
 	}
 }

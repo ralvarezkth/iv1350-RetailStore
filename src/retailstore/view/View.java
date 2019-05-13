@@ -4,7 +4,8 @@ import retailstore.controller.Controller;
 import retailstore.model.SaleDTO;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemIdentifierDTO;
-import retailstore.integration.CustomerIDDTO;;
+import retailstore.integration.CustomerIDDTO;
+import retailstore.integration.InvalidIdentifierException;;
 
 /**
  * This program has no view, instead, this class is a placeholder for the entire view.
@@ -23,8 +24,9 @@ public class View {
 
 	/**
 	 * Simulates a user input that generates calls to the controller.
+	 * @throws InvalidIdentifierException 
 	 */
-	public void sampleExecution() {
+	public void sampleExecution() throws InvalidIdentifierException {
 		contr.startNewSale();
 		System.out.println("New sale started.");
 		System.out.println("Ready to scan items.\n");
@@ -33,31 +35,55 @@ public class View {
 		ItemIdentifierDTO secondValidItemIdentifier = new ItemIdentifierDTO("1231231231");
 		ItemIdentifierDTO invalidItemIdentifier = new ItemIdentifierDTO("0000000000");
 
-		SaleDTO currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier);
-		if (currentSaleDTO != null) {
-			System.out.println(currentSaleDTO.createSaleDToString());
+		SaleDTO currentSaleDTO = null;
+		try {
+			currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier);
+			if (currentSaleDTO != null) {
+				System.out.println(currentSaleDTO.createSaleDToString());
+			}
 		}
-		System.out.println("\nReady to scan items.\n");
-		
-		currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier, 2);
-		if (currentSaleDTO != null) {
-			System.out.println(currentSaleDTO.createSaleDToString());
+		catch (InvalidIdentifierException exc) {
+			throw new InvalidIdentifierException ("Item with identifier " + exc + " was not found");
 		}
-		
-		System.out.println("\nReady to scan items.\n");
-		
-		currentSaleDTO = contr.enterIdentifier(secondValidItemIdentifier, 4);
-		if (currentSaleDTO != null) {
-			System.out.println(currentSaleDTO.createSaleDToString());
-		}
-		
 		System.out.println("\nReady to scan items.\n");
 
-		currentSaleDTO = contr.enterIdentifier(invalidItemIdentifier);
-		if (currentSaleDTO != null) {
-			System.out.println(currentSaleDTO.createSaleDToString());
+		try {
+			currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier, 2);
+			if (currentSaleDTO != null) {
+				System.out.println(currentSaleDTO.createSaleDToString());
+			}
 		}
-		
+		catch (InvalidIdentifierException exc) {
+			throw new InvalidIdentifierException ("Item with identifier " + exc + " was not found");
+
+		}
+
+		System.out.println("\nReady to scan items.\n");
+
+		try {
+			currentSaleDTO = contr.enterIdentifier(secondValidItemIdentifier, 4);
+			if (currentSaleDTO != null) {
+				System.out.println(currentSaleDTO.createSaleDToString());
+			}
+		}
+		catch (InvalidIdentifierException exc) {
+			throw new InvalidIdentifierException ("Item with identifier " + exc + " was not found");
+
+		}
+
+		System.out.println("\nReady to scan items.\n");
+
+		try {
+			currentSaleDTO = contr.enterIdentifier(invalidItemIdentifier);
+			if (currentSaleDTO != null) {
+				System.out.println(currentSaleDTO.createSaleDToString());
+			}
+		}
+		catch (InvalidIdentifierException exc) {
+			throw new InvalidIdentifierException ("Item with identifier " + exc + " was not found");
+
+		}
+
 		System.out.println("\nReady to scan items.");
 
 		Amount totalPrice = contr.signalFinished();
@@ -76,7 +102,7 @@ public class View {
 		Amount paidAmount = new Amount(1000);
 		System.out.printf("\nPaid amount: " + "%.0f\n", paidAmount.getAmount());
 		System.out.println();
-		
+
 		Amount change = contr.enterPaidAmount(paidAmount);
 		System.out.printf("\nChange: " + "%.2f\n", change.getAmount());
 		System.out.println("\nThank you, please come again!");
