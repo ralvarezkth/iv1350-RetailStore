@@ -1,5 +1,6 @@
 package retailstore.startup;
 
+import retailstore.view.ErrorMessageHandler;
 import retailstore.view.View;
 import retailstore.controller.Controller;
 import retailstore.integration.RegistryCreator;
@@ -19,10 +20,11 @@ public class Main {
 	 * @throws InvalidIdentifierException 
 	 */
 	public static void main (String args[]) throws InvalidIdentifierException {
+		ErrorMessageHandler errorMessageHandler = new ErrorMessageHandler();
 		RegistryCreator creator = new RegistryCreator();
 		Printer printer = new Printer();
 		Controller contr = new Controller(creator, printer);
-		View view = new View(contr);
+		View view = new View(contr, errorMessageHandler);
 		try {
 			view.sampleExecution();
 		}

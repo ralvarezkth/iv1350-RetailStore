@@ -28,7 +28,7 @@ public class ItemRegistry {
 			}
 		}
 		
-		throw new InvalidIdentifierException("Item with identifier " + itemIdentifier + " was not found.");
+		throw new InvalidIdentifierException("Item with identifier " + itemIdentifier.getItemIdentifier() + " was not found.");
 	}
 	
 	private void addItems() {

@@ -12,14 +12,16 @@ import retailstore.integration.InvalidIdentifierException;;
  */
 public class View {
 	private Controller contr;
+	private ErrorMessageHandler errorMessageHandler;
 
 	/**
 	 * Creates a new instance.
 	 *
 	 * @param contr	The controller that is used for all operations.
 	 */
-	public View (Controller contr) {
+	public View (Controller contr, ErrorMessageHandler errorMessageHandler) {
 		this.contr = contr;
+		this.errorMessageHandler = errorMessageHandler;
 	}
 
 	/**
@@ -28,8 +30,7 @@ public class View {
 	 */
 	public void sampleExecution() throws InvalidIdentifierException {
 		contr.startNewSale();
-		System.out.println("New sale started.");
-		System.out.println("Ready to scan items.\n");
+		System.out.println("New sale started.\n");
 
 		ItemIdentifierDTO firstValidItemIdentifier = new ItemIdentifierDTO("0123456789");
 		ItemIdentifierDTO secondValidItemIdentifier = new ItemIdentifierDTO("1231231231");
@@ -40,30 +41,18 @@ public class View {
 			currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier);
 			if (currentSaleDTO != null) {
 				System.out.println(currentSaleDTO.createSaleDToString());
+				System.out.println();
 			}
 		}
 		catch (InvalidIdentifierException exc) {
 			throw new InvalidIdentifierException ("Item with identifier " + exc + " was not found");
 		}
-		System.out.println("\nReady to scan items.\n");
-
-		try {
-			currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier, 2);
-			if (currentSaleDTO != null) {
-				System.out.println(currentSaleDTO.createSaleDToString());
-			}
-		}
-		catch (InvalidIdentifierException exc) {
-			throw new InvalidIdentifierException ("Item with identifier " + exc + " was not found");
-
-		}
-
-		System.out.println("\nReady to scan items.\n");
 
 		try {
 			currentSaleDTO = contr.enterIdentifier(secondValidItemIdentifier, 4);
 			if (currentSaleDTO != null) {
 				System.out.println(currentSaleDTO.createSaleDToString());
+				System.out.println();
 			}
 		}
 		catch (InvalidIdentifierException exc) {
@@ -71,20 +60,18 @@ public class View {
 
 		}
 
-		System.out.println("\nReady to scan items.\n");
 
 		try {
 			currentSaleDTO = contr.enterIdentifier(invalidItemIdentifier);
 			if (currentSaleDTO != null) {
 				System.out.println(currentSaleDTO.createSaleDToString());
+				System.out.println();
 			}
 		}
 		catch (InvalidIdentifierException exc) {
-			throw new InvalidIdentifierException ("Item with identifier " + exc + " was not found");
+			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
 
 		}
-
-		System.out.println("\nReady to scan items.");
 
 		Amount totalPrice = contr.signalFinished();
 		System.out.println("\nSignaling finished...");
