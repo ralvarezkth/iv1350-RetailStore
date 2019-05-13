@@ -11,7 +11,7 @@ import retailstore.integration.Printer;
  * of the application.
  */
 public class Main {
-	
+
 	/**
 	 * Starts the application.
 	 * 
@@ -23,7 +23,12 @@ public class Main {
 		Printer printer = new Printer();
 		Controller contr = new Controller(creator, printer);
 		View view = new View(contr);
-		view.sampleExecution();
+		try {
+			view.sampleExecution();
+		}
+		catch (InvalidIdentifierException exc) {
+
+		}
+
 	}
-	
 }

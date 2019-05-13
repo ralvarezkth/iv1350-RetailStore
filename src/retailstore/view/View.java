@@ -24,7 +24,7 @@ public class View {
 
 	/**
 	 * Simulates a user input that generates calls to the controller.
-	 * @throws InvalidIdentifierException 
+	 * @throws InvalidIdentifierException
 	 */
 	public void sampleExecution() throws InvalidIdentifierException {
 		contr.startNewSale();

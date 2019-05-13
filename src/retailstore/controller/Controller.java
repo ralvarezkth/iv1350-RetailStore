@@ -44,37 +44,30 @@ public class Controller {
 	/**
 	 * Retrieves an item matching the identifier in the argument.
 	 *
-	 * @param itemIdentifier The itemIdentifier of the scanned item. 
-	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity 
+	 * @param itemIdentifier The itemIdentifier of the scanned item.
+	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity
 	 * 					and the running total of the sale.
 	 */
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier) throws InvalidIdentifierException {
 		int quantity = 1;
-		
+
 		return enterIdentifier(itemIdentifier, quantity);
-	
+
 	}
 
 	/**
 	 * Retrieves an item matching the identifier in the argument.
 	 *
-	 * @param itemIdentifier The itemIdentifier of the scanned item. 
+	 * @param itemIdentifier The itemIdentifier of the scanned item.
 	 * @param quantity The quantity of the scanned item.
-	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity 
+	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity
 	 * 					and the running total of the sale.
 	 */
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) throws InvalidIdentifierException {
 
-		ItemDTO foundItem = null;
-		try {
-			foundItem = creator.getItemRegistry().findItem(itemIdentifier);
-			
-			
-		}
-		catch (InvalidIdentifierException exc) {
-			
-		}
+		ItemDTO foundItem = creator.getItemRegistry().findItem(itemIdentifier);
 		SaleDTO saleDTO = sale.addItem(foundItem, quantity);
+
 		return saleDTO;
 	}
 
@@ -94,8 +87,8 @@ public class Controller {
 	}
 
 	/**
-	 * Signals that item scanning is complete and updates the total price of the sale. 
-	 * 
+	 * Signals that item scanning is complete and updates the total price of the sale.
+	 *
 	 * @return totalPrice The total price of the sale.
 	 */
 	public Amount signalFinished() {
@@ -115,7 +108,7 @@ public class Controller {
 	public Amount discountRequest(CustomerIDDTO customerID) {
 		DiscountRules discountRules = creator.getDiscountRules().checkRules(customerID);
 		Amount priceAfterDiscount = sale.calculatePriceAfterDiscount(discountRules);
-		
+
 		return priceAfterDiscount;
 	}
 
