@@ -19,9 +19,13 @@ public class ItemRegistry {
 	 * 
 	 * @param itemIdentifier The item identifier of the scanned item.
 	 * @return foundItem The found item that corresponds to the scanned item identifier.
+	 * @throws InvalidIdentifierException Thrown when scanning an item identifier that does not exist. 
+	 * @throws DatabaseConnectionFailureException Thrown when the system cannot connect to the database.
 	 */
-	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) throws InvalidIdentifierException {
-		
+	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) throws InvalidIdentifierException, DatabaseConnectionFailureException {
+		if(itemIdentifier.getItemIdentifier().equals("-1")) {
+			throw new DatabaseConnectionFailureException("Unable to connect to the  database...");
+		}
 		for(int i = 0; i < exampleItemDB.size(); i++) {
 			if(itemIdentifier.getItemIdentifier().equals(exampleItemDB.get(i).getItemIdentifierDTO().getItemIdentifier())) {
 				return exampleItemDB.get(i);

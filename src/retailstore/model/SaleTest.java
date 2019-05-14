@@ -39,6 +39,9 @@ class SaleTest {
 		assertEquals(expResult, result, "Calculations are incorrect");
 	}
 	
-	
+	@Test
+	void testAddItemWithAnInvalidIdentifier() throws InvalidIdentifierException {
+		Sale instance = new Sale(null);
+	}
 
 }

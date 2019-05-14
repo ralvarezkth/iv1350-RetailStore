@@ -1,5 +1,4 @@
 package retailstore.integration;
-import java.lang.Exception;
 /**
  * Thrown when scanning an item identifier that does not exist. 
  */
@@ -14,7 +13,7 @@ public class InvalidIdentifierException extends Exception {
 	/**
 	 * Creates a new instance with a message specifying the invalid identifier.
 	 *  
-	 * @param itemWithInvalidIdentifier The item whose item identifier does not exist.
+	 * @param errorMsg The message explaining the error.
 	 */
 	public InvalidIdentifierException (String errorMsg) {
 		
