@@ -70,7 +70,6 @@ public class View {
 		}
 		catch (InvalidIdentifierException exc) {
 			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
-
 		}
 
 		Amount totalPrice = contr.signalFinished();
