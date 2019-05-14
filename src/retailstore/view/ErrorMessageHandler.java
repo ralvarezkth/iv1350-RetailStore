@@ -27,18 +27,13 @@ public class ErrorMessageHandler {
 	 * 
 	 * @param exc The exception that shall be logged.
 	 */
-	void logException(Exception exc) {
+	public void logException(Exception exc) {
 		StringBuilder logMsgBuilder = new StringBuilder();
 		logMsgBuilder.append(createTime());
 		logMsgBuilder.append(", An exception was thrown: ");
 		logMsgBuilder.append(exc.getMessage());
 		System.out.println(logMsgBuilder);
 		exc.printStackTrace();
-	}
-	
-	public void handleException(String uiMsg, Exception exc) {
-		showErrorMessage(uiMsg);
-		logException(exc);
 	}
 	
 	private String createTime() {
