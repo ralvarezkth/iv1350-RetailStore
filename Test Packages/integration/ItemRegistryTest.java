@@ -56,7 +56,7 @@ class ItemRegistryTest {
 			fail("Could find an item with an identifier that does not exist.");
 		}
 		catch (DatabaseConnectionFailureException exc) {
-			assertEquals(expectedMsg, exc.getMessage(), "Wrong exception message...");
+			assertEquals(expectedMsg, exc.getMessage(), "Wrong exception message, ... ");
 		}
 	}
 

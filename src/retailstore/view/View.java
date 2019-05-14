@@ -45,8 +45,7 @@ public class View {
 			}
 		}
 		catch (OperationFailedException exc) {
-			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
-			errorMessageHandler.logException(exc);
+			errorMessageHandler.handleException("Please try again.", exc);
 		}
 
 		try {
@@ -57,8 +56,7 @@ public class View {
 			}
 		}
 		catch (OperationFailedException exc) {
-			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
-			errorMessageHandler.logException(exc);
+			errorMessageHandler.handleException("Please try again.", exc);
 		}
 
 
@@ -70,8 +68,7 @@ public class View {
 			}
 		}
 		catch (OperationFailedException exc) {
-			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
-			errorMessageHandler.logException(exc);
+			errorMessageHandler.handleException("Please try again.", exc);
 		}
 
 		Amount totalPrice = contr.signalFinished();
