@@ -9,6 +9,7 @@ import retailstore.integration.ItemDTO;
 import retailstore.integration.DiscountRules;
 import retailstore.integration.Amount;
 import retailstore.integration.CustomerIDDTO;
+import retailstore.integration.DatabaseConnectionFailureException;
 import retailstore.integration.ItemIdentifierDTO;
 import retailstore.integration.Printer;
 import retailstore.integration.InvalidIdentifierException;
@@ -48,7 +49,7 @@ public class Controller {
 	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity
 	 * 					and the running total of the sale.
 	 */
-	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier) throws InvalidIdentifierException {
+	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier) throws OperationFailedException {
 		int quantity = 1;
 
 		return enterIdentifier(itemIdentifier, quantity);
@@ -63,12 +64,17 @@ public class Controller {
 	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity
 	 * 					and the running total of the sale.
 	 */
-	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) throws InvalidIdentifierException {
+	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) throws OperationFailedException {
 
+		try {
 		ItemDTO foundItem = creator.getItemRegistry().findItem(itemIdentifier);
 		SaleDTO saleDTO = sale.addItem(foundItem, quantity);
 
 		return saleDTO;
+		}
+		catch (DatabaseConnectionFailureException | InvalidIdentifierException exc) {
+			throw new OperationFailedException (exc.getMessage());
+		}
 	}
 
 	/**

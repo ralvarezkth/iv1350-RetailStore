@@ -1,4 +1,4 @@
-package retailstore.integration;
+package 
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,6 +6,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import retailstore.integration.DatabaseConnectionFailureException;
+import retailstore.integration.InvalidIdentifierException;
+import retailstore.integration.ItemDTO;
+import retailstore.integration.ItemIdentifierDTO;
+import retailstore.integration.ItemRegistry;
 import retailstore.model.Sale;
 
 class ItemRegistryTest {
