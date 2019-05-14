@@ -25,12 +25,6 @@ public class Main {
 		Printer printer = new Printer();
 		Controller contr = new Controller(creator, printer);
 		View view = new View(contr, errorMessageHandler);
-		try {
-			view.sampleExecution();
-		}
-		catch (OperationFailedException exc) {
-
-		}
-
+		view.sampleExecution();
 	}
 }
