@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import retailstore.controller.Controller;
 import retailstore.controller.OperationFailedException;
 import retailstore.integration.Amount;
-import retailstore.integration.DatabaseConnectionFailureException;
-import retailstore.integration.InvalidIdentifierException;
 import retailstore.integration.ItemDTO;
 import retailstore.integration.ItemIdentifierDTO;
 import retailstore.integration.ItemRegistry;
@@ -42,7 +40,7 @@ class ControllerTest {
 	}
 
 	@Test
-	void testEnterIdentifierWithAnInvalidIdentifier() throws OperationFailedException, InvalidIdentifierException, DatabaseConnectionFailureException {
+	void testEnterIdentifierWithAnInvalidIdentifier() throws OperationFailedException {
 		String expectedMsg = ("Item with identifier " + searchedItemForIdentifierError.getItemIdentifierDTO().getItemIdentifier() + " was not found.");
 		
 		try {
@@ -55,7 +53,7 @@ class ControllerTest {
 	}
 	
 	@Test
-	void testEnterIdentifierWithDatabaseFailureIdentifier() throws OperationFailedException, InvalidIdentifierException, DatabaseConnectionFailureException {
+	void testEnterIdentifierWithDatabaseFailureIdentifier() throws OperationFailedException {
 		String expectedMsg = ("Unable to connect to the database...");
 		
 		try {

@@ -9,8 +9,6 @@ import retailstore.model.SaleDTO;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemIdentifierDTO;
 import retailstore.integration.CustomerIDDTO;
-import retailstore.integration.ItemDTO;
-
 /**
  * This program has no view, instead, this class is a placeholder for the entire view.
  */

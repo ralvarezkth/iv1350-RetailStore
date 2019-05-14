@@ -20,6 +20,8 @@ public class ErrorMessageHandler {
 		errorMessage.append(") \n");
 		errorMessage.append(message);
 		System.out.println(errorMessage);
+		
+		
 	}
 	
 	/**
@@ -29,6 +31,7 @@ public class ErrorMessageHandler {
 	 */
 	void logException(Exception exc) {
 		StringBuilder logMsgBuilder = new StringBuilder();
+		logMsgBuilder.append("\nThe following message is intended to be stored in a log file: \n");
 		logMsgBuilder.append(createTime());
 		logMsgBuilder.append(", An exception was thrown: ");
 		logMsgBuilder.append(exc.getMessage());
