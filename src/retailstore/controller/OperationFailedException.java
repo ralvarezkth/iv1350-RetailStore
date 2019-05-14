@@ -1,11 +1,11 @@
 package retailstore.controller;
 
+/**
+ * 
+ * Thrown when an operation fails.
+ *
+ */
 public class OperationFailedException extends Exception {
-	
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**

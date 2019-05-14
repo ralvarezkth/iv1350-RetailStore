@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import retailstore.integration.Amount;
 import retailstore.integration.CustomerIDDTO;
 import retailstore.integration.DiscountRules;
+import retailstore.integration.RegistryCreator;
 /**
  * Tests for the DiscountRules class.
  *
@@ -16,8 +17,8 @@ import retailstore.integration.DiscountRules;
 class DiscountRulesTest {
 	protected Amount testTotalPrice;
 	protected Amount testDiscountPercentage;
-	protected DiscountRules testRulesWithDiscount = new DiscountRules();
-	protected DiscountRules testRulesWithoutDiscount = new DiscountRules();
+	protected DiscountRules testDiscountRules;
+	protected RegistryCreator testCreator;
 	protected CustomerIDDTO testCustomerWithDiscount = 
 			new CustomerIDDTO("testPersonWithDiscount", 555555);
 	protected CustomerIDDTO testCustomerWithoutDiscount = 
@@ -25,39 +26,38 @@ class DiscountRulesTest {
 
 	@BeforeEach
 	void setUp() {
+		testCreator = new RegistryCreator();
+		testDiscountRules = testCreator.getDiscountRules();
 		testTotalPrice = new Amount(100);
 		testDiscountPercentage = new Amount(0.1);
-		
-		testRulesWithDiscount = testRulesWithDiscount
-				.checkRules(testCustomerWithDiscount);
-		testRulesWithoutDiscount = testRulesWithoutDiscount
-				.checkRules(testCustomerWithoutDiscount);
-
 	}
 
 	@AfterEach
 	void tearDown() {
 		testTotalPrice = null;
 		testDiscountPercentage = null;
-		testRulesWithDiscount = null;
-		testRulesWithoutDiscount = null;
+		testDiscountRules = null;
 		testCustomerWithDiscount = null;
 		testCustomerWithoutDiscount = null;
 	}
 
 	@Test
 	void testCalculatePriceWithDiscount() {
+		testDiscountRules = testDiscountRules
+				.checkRules(testCustomerWithDiscount);
 		double expResult = new Amount(90).getAmount();
 		double result = this.testTotalPrice.getAmount() 
-				* (1 - testRulesWithDiscount.getDiscountPercentage().getAmount());
+				* (1 - testDiscountRules.getDiscountPercentage().getAmount());
 		assertEquals(expResult, result, "Calculations are incorrect");
 	}
 	
 	@Test
 	void testCalculatePriceWithoutDiscount() {
+		testDiscountRules = testDiscountRules
+				.checkRules(testCustomerWithoutDiscount);
 		double expResult = new Amount(100).getAmount();
 		double result = this.testTotalPrice.getAmount() 
-				* (1 - testRulesWithoutDiscount.getDiscountPercentage().getAmount());
+				* (1 - testDiscountRules.getDiscountPercentage().getAmount());
 		assertEquals(expResult, result, "Calculations are incorrect.");
 	}
 

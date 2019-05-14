@@ -4,10 +4,6 @@ package retailstore.integration;
  */
 public class InvalidIdentifierException extends Exception {
 	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**

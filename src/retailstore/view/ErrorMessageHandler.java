@@ -27,7 +27,7 @@ public class ErrorMessageHandler {
 	 * 
 	 * @param exc The exception that shall be logged.
 	 */
-	public void logException(Exception exc) {
+	void logException(Exception exc) {
 		StringBuilder logMsgBuilder = new StringBuilder();
 		logMsgBuilder.append(createTime());
 		logMsgBuilder.append(", An exception was thrown: ");

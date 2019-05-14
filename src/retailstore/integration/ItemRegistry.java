@@ -24,7 +24,7 @@ public class ItemRegistry {
 	 */
 	public ItemDTO findItem(ItemIdentifierDTO itemIdentifier) throws InvalidIdentifierException, DatabaseConnectionFailureException {
 		if(itemIdentifier.getItemIdentifier().equals("-1")) {
-			throw new DatabaseConnectionFailureException("Unable to connect to the  database...");
+			throw new DatabaseConnectionFailureException("Unable to connect to the database...");
 		}
 		for(int i = 0; i < exampleItemDB.size(); i++) {
 			if(itemIdentifier.getItemIdentifier().equals(exampleItemDB.get(i).getItemIdentifierDTO().getItemIdentifier())) {

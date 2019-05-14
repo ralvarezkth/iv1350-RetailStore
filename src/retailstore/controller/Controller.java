@@ -48,6 +48,7 @@ public class Controller {
 	 * @param itemIdentifier The itemIdentifier of the scanned item.
 	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity
 	 * 					and the running total of the sale.
+	 * @throws OperationFailedException If <code>findItem</code> sends an error
 	 */
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier) throws OperationFailedException {
 		int quantity = 1;
@@ -63,6 +64,7 @@ public class Controller {
 	 * @param quantity The quantity of the scanned item.
 	 * @return saleDTO 	Contains the itemDTO for the scanned item, its quantity
 	 * 					and the running total of the sale.
+	 * @throws OperationFailedException If <code>findItem</code> sends an error
 	 */
 	public SaleDTO enterIdentifier(ItemIdentifierDTO itemIdentifier, int quantity) throws OperationFailedException {
 
@@ -73,7 +75,7 @@ public class Controller {
 		return saleDTO;
 		}
 		catch (DatabaseConnectionFailureException | InvalidIdentifierException exc) {
-			throw new OperationFailedException (exc.getMessage());
+			throw new OperationFailedException(exc.getMessage());
 		}
 	}
 
