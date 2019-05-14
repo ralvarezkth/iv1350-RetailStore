@@ -26,5 +26,5 @@ public class Main {
 		Controller contr = new Controller(creator, printer);
 		View view = new View(contr, errorMessageHandler);
 		view.sampleExecution();
-	}
+		}
 }
