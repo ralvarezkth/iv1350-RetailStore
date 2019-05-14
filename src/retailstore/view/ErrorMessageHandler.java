@@ -22,6 +22,20 @@ public class ErrorMessageHandler {
 		System.out.println(errorMessage);
 	}
 	
+	/**
+	 * Writes a log entry describing a thrown exception.
+	 * 
+	 * @param exc The exception that shall be logged.
+	 */
+	public void logException(Exception exc) {
+		StringBuilder logMsgBuilder = new StringBuilder();
+		logMsgBuilder.append(createTime());
+		logMsgBuilder.append(", An exception was thrown: ");
+		logMsgBuilder.append(exc.getMessage());
+		System.out.println(logMsgBuilder);
+		exc.printStackTrace();
+	}
+	
 	private String createTime() {
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
