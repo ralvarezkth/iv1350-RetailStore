@@ -3,10 +3,15 @@ package retailstore.controller;
 import retailstore.model.Sale;
 import retailstore.model.CashRegister;
 import retailstore.model.SaleDTO;
+import retailstore.model.SaleObserver;
 import retailstore.model.CashPayment;
 import retailstore.integration.RegistryCreator;
 import retailstore.integration.ItemDTO;
 import retailstore.integration.DiscountRules;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import retailstore.integration.Amount;
 import retailstore.integration.CustomerIDDTO;
 import retailstore.integration.DatabaseConnectionFailureException;
@@ -18,6 +23,7 @@ import retailstore.integration.InvalidIdentifierException;
  * All calls to the model passes through this class.
  */
 public class Controller {
+	private List<SaleObserver> saleObservers = new ArrayList<>();
 	private RegistryCreator creator;
 	private Sale sale;
 	private Printer printer;
@@ -84,6 +90,7 @@ public class Controller {
 	 * @return change The amount of change to give to the customer.
 	 */
 	public Amount enterPaidAmount (Amount paidAmount) {
+		sale.addSaleObserver(saleObservers);
 		CashPayment payment = new CashPayment(paidAmount);
 		Amount change = sale.pay(payment);
 		sale.printReceipt(printer);
@@ -116,6 +123,17 @@ public class Controller {
 		Amount priceAfterDiscount = sale.calculatePriceAfterDiscount(discountRules);
 
 		return priceAfterDiscount;
+	}
+	
+	/**
+	 * The specified observer will be notified when a sale 
+	 * has been completed and paid. There will be notifications only
+	 * for sales that are started after this method is called.
+	 * 
+	 * @param obs The observer to notify.
+	 */
+	public void addSaleObserver(SaleObserver obs) {
+		saleObservers.add(obs);
 	}
 
 }

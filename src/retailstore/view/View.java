@@ -23,6 +23,7 @@ public class View {
 	 */
 	public View (Controller contr, ErrorMessageHandler errorMessageHandler) {
 		this.contr = contr;
+		contr.addSaleObserver(new TotalRevenueView());
 		this.errorMessageHandler = errorMessageHandler;
 	}
 

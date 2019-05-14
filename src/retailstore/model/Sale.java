@@ -26,6 +26,7 @@ public class Sale {
 	private CashPayment cashPayment;
 	private List<ListItem> listOfItems = new ArrayList<>();
 	private CashRegister cashRegister;
+	private List<SaleObserver> saleObservers = new ArrayList<>();
 
 
 	/**
@@ -79,8 +80,20 @@ public class Sale {
 	 * @return change The amount of change to give to the customer.
 	 */
 	public Amount pay(CashPayment payment) {
+		this.cashPayment = payment;
 		this.change = new Amount(payment.getPaidAmount().getAmount() - this.totalPrice.getAmount());
+		notifyObservers();
 		return change;
+	}
+	
+	private void notifyObservers() {
+		for (SaleObserver obs : saleObservers) {
+			obs.newSale(this.cashPayment);
+		}
+	}
+	
+	public void addSaleObserver (List<SaleObserver> obs) {
+		this.saleObservers.addAll(obs);
 	}
 
 	/**
