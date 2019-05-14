@@ -1,4 +1,4 @@
-package 
+package integration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,14 +49,14 @@ class ItemRegistryTest {
 	
 	@Test
 	void testFindItemDatabaseFailureException() throws DatabaseConnectionFailureException {
-		String expectedMsg = ("");
+		String expectedMsg = ("Unable to connect to the database...");
 		
 		try {
 			itemReg.findItem(searchedItem.getItemIdentifierDTO());
 			fail("Could find an item with an identifier that does not exist.");
 		}
 		catch (DatabaseConnectionFailureException exc) {
-			assertEquals(expectedMsg, exc.getMessage(), "Wrong exception message...");
+			assertEquals(expectedMsg, exc.getMessage(), "Wrong exception message, ... ");
 		}
 	}
 
