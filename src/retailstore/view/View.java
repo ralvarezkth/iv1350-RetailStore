@@ -1,11 +1,15 @@
 package retailstore.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retailstore.controller.Controller;
 import retailstore.controller.OperationFailedException;
 import retailstore.model.SaleDTO;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemIdentifierDTO;
 import retailstore.integration.CustomerIDDTO;
+import retailstore.integration.ItemDTO;
 
 /**
  * This program has no view, instead, this class is a placeholder for the entire view.
@@ -32,47 +36,25 @@ public class View {
 		contr.startNewSale();
 		System.out.println("New sale started.\n");
 
-		ItemIdentifierDTO firstValidItemIdentifier = new ItemIdentifierDTO("0123456789");
-		ItemIdentifierDTO secondValidItemIdentifier = new ItemIdentifierDTO("1231231231");
-		ItemIdentifierDTO invalidItemIdentifier = new ItemIdentifierDTO("0000000000");
+		List<ItemIdentifierDTO> sampleScannedItems = new ArrayList<>();
+
+		sampleScannedItems.add(new ItemIdentifierDTO("0123456789"));
+		sampleScannedItems.add(new ItemIdentifierDTO("1231231231"));
+		sampleScannedItems.add(new ItemIdentifierDTO("0000000000"));
 
 		SaleDTO currentSaleDTO = null;
-		try {
-			currentSaleDTO = contr.enterIdentifier(firstValidItemIdentifier);
-			if (currentSaleDTO != null) {
-				System.out.println(currentSaleDTO.createSaleDToString());
-				System.out.println();
+		for(ItemIdentifierDTO item : sampleScannedItems) {
+			try {
+				currentSaleDTO = contr.enterIdentifier(item);
+				if (currentSaleDTO != null) {
+					System.out.println(currentSaleDTO.createSaleDToString());
+					System.out.println();
+				}
+			}
+			catch (OperationFailedException exc) {
+				errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
 			}
 		}
-		catch (OperationFailedException exc) {
-			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
-		}
-
-		try {
-			currentSaleDTO = contr.enterIdentifier(secondValidItemIdentifier, 4);
-			if (currentSaleDTO != null) {
-				System.out.println(currentSaleDTO.createSaleDToString());
-				System.out.println();
-			}
-		}
-		catch (OperationFailedException exc) {
-			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
-
-		}
-
-
-		try {
-			currentSaleDTO = contr.enterIdentifier(invalidItemIdentifier);
-			if (currentSaleDTO != null) {
-				System.out.println(currentSaleDTO.createSaleDToString());
-				System.out.println();
-			}
-		}
-		catch (OperationFailedException exc) {
-			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
-
-		}
-
 		Amount totalPrice = contr.signalFinished();
 		System.out.println("\nSignaling finished...");
 		System.out.printf("\nTotal price (including VAT): " + "%.2f\n", totalPrice.getAmount());
