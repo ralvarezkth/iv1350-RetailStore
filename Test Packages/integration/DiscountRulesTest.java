@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import retailstore.integration.Amount;
+import retailstore.integration.CustomerIDDTO;
+import retailstore.integration.DiscountRules;
 /**
  * Tests for the DiscountRules class.
  *

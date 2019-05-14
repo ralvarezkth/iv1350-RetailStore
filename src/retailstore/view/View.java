@@ -1,11 +1,11 @@
 package retailstore.view;
 
 import retailstore.controller.Controller;
+import retailstore.controller.OperationFailedException;
 import retailstore.model.SaleDTO;
 import retailstore.integration.Amount;
 import retailstore.integration.ItemIdentifierDTO;
 import retailstore.integration.CustomerIDDTO;
-import retailstore.integration.InvalidIdentifierException;;
 
 /**
  * This program has no view, instead, this class is a placeholder for the entire view.
@@ -28,7 +28,7 @@ public class View {
 	 * Simulates a user input that generates calls to the controller.
 	 * @throws InvalidIdentifierException
 	 */
-	public void sampleExecution() throws InvalidIdentifierException {
+	public void sampleExecution() throws OperationFailedException {
 		contr.startNewSale();
 		System.out.println("New sale started.\n");
 
@@ -44,8 +44,8 @@ public class View {
 				System.out.println();
 			}
 		}
-		catch (InvalidIdentifierException exc) {
-			throw new InvalidIdentifierException ("Item with identifier " + exc + " was not found");
+		catch (OperationFailedException exc) {
+			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
 		}
 
 		try {
@@ -55,8 +55,8 @@ public class View {
 				System.out.println();
 			}
 		}
-		catch (InvalidIdentifierException exc) {
-			throw new InvalidIdentifierException ("Item with identifier " + exc + " was not found");
+		catch (OperationFailedException exc) {
+			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
 
 		}
 
@@ -68,7 +68,7 @@ public class View {
 				System.out.println();
 			}
 		}
-		catch (InvalidIdentifierException exc) {
+		catch (OperationFailedException exc) {
 			errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
 		}
 
