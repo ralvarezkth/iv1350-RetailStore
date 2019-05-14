@@ -92,6 +92,11 @@ public class Sale {
 		}
 	}
 	
+	/**
+	 * Adds observers to <code>saleObservers</code>.
+	 * 
+	 * @param obs A list of observers.
+	 */
 	public void addSaleObserver (List<SaleObserver> obs) {
 		this.saleObservers.addAll(obs);
 	}
