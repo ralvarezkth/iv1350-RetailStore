@@ -53,6 +53,7 @@ public class View {
 			}
 			catch (OperationFailedException exc) {
 				errorMessageHandler.showErrorMessage(exc.getMessage() + " Please try again.");
+				errorMessageHandler.logException(exc);
 			}
 		}
 		Amount totalPrice = contr.signalFinished();
